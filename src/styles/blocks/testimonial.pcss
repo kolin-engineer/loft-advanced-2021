@@ -1,0 +1,49 @@
+.testimonial {
+  font-weight: 600;
+  padding-left: 100px;
+  position: relative;
+  &:before {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 78px;
+    height: 57px;
+    background: no-repeat
+      svg-load("quote.svg", fill=#303133, width=100%, height=100%) center;
+    background-size: auto 100%;
+    top: 0;
+    left: 0px;
+  }
+  &--dark {
+    color: rgba(#fff, 0.6);
+  }
+  &__blockquote {
+    line-height: 30px;
+  }
+  &__author-box {
+    margin-top: 31px;
+    display: flex;
+    align-items: center;
+  }
+  &__author-figure {
+    width: 75px;
+    min-width: 75px; // prevent compression
+    height: 75px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  &__author-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  &__author-name {
+    color: #fff;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+  &__author-about {
+    margin-left: 31px;
+  }
+}

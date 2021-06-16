@@ -1,0 +1,172 @@
+include ./mixins.pug
+
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Portfolio | main page
+  body
+    .wrapper(style='min-height:3000px')
+      .maincontent
+        .bg-train
+          section.hero-section.fullscreen-section
+            .container.container--fullheight
+              .hero
+                header.header.hero__header
+                  .logo НК
+                  .header__nav
+                    include ./components/nav.pug
+                  .social-list.header__icon-list
+                    a.social-list__item(href="#")
+                      +icon('insta', 'icon-social')
+                    a.social-list__item(href="#")
+                      +icon('github', 'icon-social')
+                    a.social-list__item(href="#")
+                      +icon('vk', 'icon-social')
+                    a.social-list__item(href="#")
+                      +icon('envelope', 'icon-social')
+                .hero__main
+                  .hero__title Кирил#[i о]вич Николай
+                  .hero__subtitle Личный сайт #[br] веб разработчика
+
+                .hero__bottom
+                  button.button.button--outfilled
+                    span.button__text Скролл
+                    +icon('scroll', 'button__icon')
+          // Profi Section
+          section.profi-section
+            .profi.text.text--600
+              .profi__left
+                .profi__top
+                  .profi__avatar-wrap
+                    +image('content/kolin.jpg', 'avatar')
+                .profi__bottom
+                  .profi__detail
+                    .profi__detail-q.text--grey Проживаю:
+                    .profi__detail-a Купертино
+                  .profi__detail
+                    .profi__detail-q.text--grey Возраст:
+                    .profi__detail-a 32 года
+                  .profi__detail
+                    .profi__detail-q.text--grey Родился:
+                    .profi__detail-a 24 января 1989
+              .profi__right
+                .profi__top
+                  p.text.text--grey-light Привет, меня зовут
+                  h2.profi__name Николай Кирил#[em о]вич
+                  p.profi__desc.text.text--grey-light Я занимаюсь разработкой современных сайтов и приложений. 
+                  p.text Мне нравится делать продающие сайты и сервисы.
+                .profi__bottom
+                  em.profi__quote.text.text--400 Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+          // END Profi Section
+
+        // Skills Sections
+        section.skills-section
+          .skills-section__content
+            h3.h3 Чем я могу быть полезен
+            p.skills-section__subtitle.text.text--600 Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+            .skills-box
+              .skills-group
+                h3.skills-group__title Front-end
+                .skills-group__list
+                  .skills-group__list-item HTML5
+                  .skills-group__list-item CSS3
+                  .skills-group__list-item JavaScript
+                  .skills-group__list-item jQuery & Vue
+                h3.skills-group__title WorkFlow
+                .skills-group__list
+                  .skills-group__list-item Git
+                  .skills-group__list-item Terminal
+                  .skills-group__list-item Gulp
+                  .skills-group__list-item Webpack
+        // END Skills Sections
+
+        // Porftolio-Section
+        section.portfolio-section 
+          .container
+            h2.h2 Мои работы
+            .slider.portfolio-section__slider
+              .slider__inner
+                .slider__preview-box
+                  .slider__order 1
+                  .slider__img-wrap
+                    +image('content/Копия 1.jpg', 'slider__img')
+                  .slider__thumb-list
+                    .slider__thumb-wrap
+                      +image('content/Копия 1.jpg', 'slider__thumb')
+                    .slider__thumb-wrap
+                      +image('content/Копия 2.jpg', 'slider__thumb')
+                    .slider__thumb-wrap
+                      +image('content/Копия 3.jpg', 'slider__thumb')
+                    .slider__thumb-wrap
+                      +image('content/Копия 4.jpg', 'slider__thumb')
+                  .slider__nav
+                    .slider__nav-next 
+                    .slider__nav-prev 
+                .slider__desc-box
+                  .slider__tags
+                    .tag HTML
+                    .tag CSS
+                    .tag JavaScript
+                  h3.h3.slider__title Сайт школы образования
+                  p.slider__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                  .slider__link-wrap
+                    +icon('link','icon-link')
+                    a.slider__link(href="#") Посмотреть сайт
+        // END Porftolio-Section
+        // Testimonials Section
+        section.testimonials-section
+          .testimonials-section__content
+            h2.h2.testimonials-section__title Что обо мне говорят
+            .testimonials-section__carousel
+              .carousel
+                .carousel__controls
+                  .carousel__control-next
+                    .icon.icon-chevron-left
+                  .carousel__control-prev
+                    .icon.icon-chevron-right
+                .carousel__inner
+                  each i in [1,2]
+                    .carousel__item
+                      figure.testimonial.testimonial--dark
+                        blockquote.blockquote.testimonial__blockquote Разработчики подрудились на славу. Кропотливый подход к работе пройдет любые испытания. Не оскверняй код IE<11
+                        .testimonial__author-box
+                          figure.testimonial__author-figure
+                            +image('content/spkorolov.jpg', 'testimonial__author-img')
+                          figcaption.testimonial__author-about
+                            .testimonial__author-name Сергей Королев
+                            .testimonial__author-desc Академик
+        // END Testimonials Section
+
+        // Footer
+        footer.footer
+          .container
+            .footer__inner
+              .footer__side
+                .footer__copy © 2020
+                .footer__author-box
+                  .footer__author-name Кирилович Николай
+                  .footer__author-cite Личный сайт веб-разработчика
+              .footer__main
+                .footer__nav
+                  include ./components/nav.pug
+                .footer__desc-box
+                  .footer__site-about Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+                  .footer__socials
+                figure.footer__quote
+                  blockquote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+                  figcaption Martin Golding
+
+
+        // END Footer
+
+
+
+
+
+
+
+            //- +image('content/user.jpg', 'user-pic')
+            //- .icon-bg

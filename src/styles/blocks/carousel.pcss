@@ -1,0 +1,30 @@
+.carousel {
+  position: relative;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__item {
+    max-width: 445px;
+  }
+  &__controls {
+    display: flex;
+    width: 134px;
+    justify-content: space-between;
+    position: absolute;
+    top: -130px;
+    left: 490px;
+  }
+  &__control-prev,
+  &__control-next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 53px;
+    height: 53px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+}

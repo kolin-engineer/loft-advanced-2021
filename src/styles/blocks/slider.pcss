@@ -1,0 +1,150 @@
+.slider {
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__preview-box {
+    width: calc(100vw * 0.54);
+    max-width: 975px;
+    height: 550px;
+    position: relative;
+  }
+  &__desc-box {
+    width: 336px;
+  }
+
+  &__img-wrap {
+    height: 100%;
+    position: relative;
+  }
+  &__img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__order {
+    position: absolute;
+    font-size: 400px;
+    line-height: 400px;
+    font-weight: 800;
+    color: #e6e6e6;
+    right: 60px;
+    transform: translateX(100%);
+    display: block;
+  }
+  /* Thumbs Nav */
+  &__thumb-list {
+    position: absolute;
+    display: flex;
+    bottom: 53px;
+    max-height: 106px;
+    height: calc(100% * 0.182);
+    width: 100%;
+    justify-content: flex-end;
+  }
+  &__thumb-wrap {
+    flex: 0 0 18%;
+    height: 100%;
+    cursor: pointer;
+    &:hover {
+      border: 3px solid #dc9322;
+    }
+  }
+
+  &__thumb {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Navigation Arrows*/
+  &__nav {
+    position: absolute;
+    right: -5%;
+    bottom: 10%;
+    width: 5%;
+    height: calc(100% * 0.182);
+    min-width: 50px;
+  }
+  &__nav-next,
+  &__nav-prev {
+    width: 100%;
+    height: 50%;
+    background-color: #333c49;
+    position: relative;
+    cursor: pointer;
+  }
+  &__nav-next:before,
+  &__nav-prev:before {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 11px;
+    height: 19px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &__nav-prev:before {
+    background: svg-load(
+        "chevron-left.svg",
+        fill=#717883,
+        width=100%,
+        height=100%
+      )
+      no-repeat center / contain;
+  }
+  &__nav-prev:hover {
+    &:before {
+      background: svg-load(
+        "chevron-left.svg",
+        fill=#ffffff,
+        width=100%,
+        height=100%
+      );
+    }
+  }
+  &__nav-next:before {
+    background: svg-load(
+        "chevron-right.svg",
+        fill=#717883,
+        width=100%,
+        height=100%
+      )
+      no-repeat center / contain;
+  }
+  &__nav-next:hover {
+    &:before {
+      background: svg-load(
+        "chevron-right.svg",
+        fill=#ffffff,
+        width=100%,
+        height=100%
+      );
+    }
+  }
+  /* Tags */
+  /* title */
+  &__title {
+    margin-top: 35px;
+  }
+  &__desc {
+    margin-top: 35px;
+    line-height: 30px;
+  }
+  &__link-wrap {
+    margin-top: 45px;
+  }
+  &__link {
+    color: #586ed3;
+    margin-top: 46px;
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 700;
+    margin-left: 16px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

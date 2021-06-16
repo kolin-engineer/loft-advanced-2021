@@ -1,0 +1,11 @@
+{
+  "text-color": "#2d3c4e",
+  "links-color": "#ff9a00",
+  "errors-color": "#cd1515",
+  "slider-text-color":"#333C49",
+  "slider-text-color-light":"rgba(#333C49,.8)",
+  "bp-desktop-hd": "1800px",
+  "bp-desktop": "1200px",
+  "bp-tablets": "768px",
+  "bp-phones": "480px"
+}
