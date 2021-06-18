@@ -1,13 +1,16 @@
-.profi {
-  display: flex;
-  max-width: 1006px;
-  margin: 0 auto;
+.owner {
+  &__container {
+    padding: 155px 0 274px;
+    display: flex;
+    max-width: 1006px;
+    margin: 0 auto;
+  }
   @include desktop {
     max-width: 86%;
   }
   &__left {
+    flex-basis: 432px;
     padding-right: 145px;
-    width: 431px;
   }
   &__right {
     flex: 1;

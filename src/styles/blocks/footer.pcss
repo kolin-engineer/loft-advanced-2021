@@ -3,11 +3,60 @@
   padding: 76px 0;
   &__inner {
     display: flex;
+    justify-content: space-between;
+  }
+  &__copy {
+    font-size: 48px;
+    line-height: 65px;
   }
   &__left {
   }
   &__right {
   }
   &__side {
+    display: flex;
+    min-width: 361px;
+    justify-content: space-between;
+  }
+  &__author-box {
+    max-width: 142px;
+  }
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 934px;
+    color: rgba(#fff, 0.6);
+  }
+  &__nav {
+    flex-basis: 100%;
+    margin-bottom: 47px;
+  }
+  &__author-name {
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: 700;
+  }
+  &__author-cite {
+    font-size: 16px;
+    line-height: 30px;
+    color: rgba(#fff, 0.3);
+    margin-top: 16px;
+  }
+  &__desc-box {
+    max-width: 314px;
+  }
+  &__socials {
+    margin-top: 40px;
+  }
+  &__quote {
+    max-width: 430px;
+  }
+  &__quote-author {
+    font-style: italic;
+    margin-top: 31px;
+    line-height: 22px;
+    color: #fff;
   }
 }
