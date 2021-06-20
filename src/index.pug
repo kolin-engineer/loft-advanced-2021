@@ -60,7 +60,9 @@ block content
               .skills__subtitle Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
             .skills__list
               .skills__list-inner
-                -  const skills = [["Front-end", ['HTML5', "CSS3", "JavaScript", "jQuery & Vue"]], ["WorkFlow", ["GIT", "Terminal", "Gulp", "Webpack"]]];
+                - const frontEnd = [{tech:'HTML5', depth:94}, {tech:'CSS3', depth:88}, {tech:'JavaScript', depth:77}, {tech:'jQuery & Vue', depth:50}];
+                - const workFlow = [{tech:'Git', depth:80}, {tech:'Terminal', depth:70}, {tech:'Webpack', depth:60}, {tech:'Linux', depth:50}];
+                - const skills = [["Front-end", frontEnd], ['WorkFlow', workFlow]];
                   each skillArr in skills
                     .skills-group
                       h3.skills-group__title #{skillArr[0]}
@@ -70,15 +72,12 @@ block content
                               .skill
                                 svg.skill__circle-wrap(viewBox='0 0 100 100')
                                   circle.skill__circle-inner(cx=50 cy=50 r=40 fill="none")
-                                  circle.skill__circle-outer(cx=50 cy=50 r=40 fill="none" stroke='url(#gradient)' stroke-width=3)
+                                  circle.skill__circle-outer(stroke-dashoffset=`${256 - 256 * parseInt(skill.depth) / 100}` cx=50 cy=50 r=40 fill="none" stroke='url(#gradient)' stroke-width=3)
                                   linearGradient(id='gradient' x1="0%" y1="0%" x2="100%" y2="0%")
                                     //- stop(offset="0%" stop-color='#D0731B')
                                     stop(offset="0%" stop-color='#D0731B')
                                     stop(offset="100%" stop-color='#DC9322')
-                                .skill__circle-text #{skill}
-      section.skills-section
-        .skills-section__content
-          .skills-box
+                                .skill__circle-text #{skill.tech}
       // END Skills Sections
 
       // Porftolio-Section
