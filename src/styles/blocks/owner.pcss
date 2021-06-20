@@ -1,22 +1,22 @@
 .owner {
   &__container {
-    padding: 155px 0 274px;
+    padding: 4.7rem 0 274px;
     display: flex;
-    max-width: 1006px;
+    max-width: 61rem;
     margin: 0 auto;
   }
   @include desktop {
     max-width: 86%;
   }
-  &__left {
+  &__left-col {
     flex-basis: 432px;
-    padding-right: 145px;
+    padding-right: 135px;
   }
-  &__right {
+  &__right-col {
     flex: 1;
   }
   &__bottom {
-    margin-top: 77px;
+    margin-top: 62px;
   }
   &__top {
     min-height: 200px;
@@ -25,15 +25,16 @@
     font-size: 36px;
     line-height: 49px;
     font-weight: bold;
-    margin-top: 21px;
+    margin-top: 15px;
   }
   &__desc {
     margin-top: 31px;
   }
   &__detail {
     display: flex;
+    margin-top: 16px;
     &-q {
-      flex-basis: 160px;
+      flex-basis: 175px;
     }
   }
   &__avatar-wrap {
@@ -46,9 +47,9 @@
       position: absolute;
       transform: translateX(-100%);
       top: 0;
-      left: -26px;
+      left: -30px;
       content: "*";
-      font-size: 58px;
+      font-size: 42px;
       line-height: 1;
       font-style: italic;
       color: rgba(#db0200, 0.5);

@@ -28,8 +28,11 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 1417px;
-
+  width: 95%;
+  max-width: 1497px;
+  @include desktop {
+    width: 87%;
+  }
   @include phones {
     width: 85%;
   }

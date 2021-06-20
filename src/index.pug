@@ -27,7 +27,7 @@ block content
         // END Hero section
         section.owner.text.text--600
           .container.owner__container
-            .owner__left
+            .owner__left-col
               .owner__top
                 .owner__avatar-wrap
                   +image('content/kolin.jpg', 'avatar')
@@ -41,7 +41,7 @@ block content
                 .owner__detail
                   .owner__detail-q.text--grey Родился:
                   .owner__detail-a 24 января 1989
-            .owner__right
+            .owner__right-col
               .owner__top
                 p.text.text--grey-light Привет, меня зовут
                 h2.owner__name Николай Кирил#[em о]вич
@@ -60,22 +60,22 @@ block content
               .skills__subtitle Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
             .skills__list
               .skills__list-inner
-                .skills-group
-                -  const skills = [["Front-end", ['HTML', "CSS3", "JavaScript", "jQuery & Vue"]], ["WorkFlow", ["GIT", "Terminal", "Gulp", "Webpack"]]];
+                -  const skills = [["Front-end", ['HTML5', "CSS3", "JavaScript", "jQuery & Vue"]], ["WorkFlow", ["GIT", "Terminal", "Gulp", "Webpack"]]];
                   each skillArr in skills
-                    h3.skills-group__title #{skillArr[0]}
-                    .skills-group__list
-                        each skill in skillArr[1]
-                          .skills-group__list-item
-                            .skill
-                              svg.skill__circle-wrap(viewBox='0 0 100 100')
-                                circle.skill__circle-inner(cx=50 cy=50 r=40 fill="none")
-                                circle.skill__circle-outer(cx=50 cy=50 r=40 fill="none" stroke='url(#gradient)' stroke-width=3)
-                                linearGradient(id='gradient' x1="0%" y1="0%" x2="100%" y2="0%")
-                                  //- stop(offset="0%" stop-color='#D0731B')
-                                  stop(offset="0%" stop-color='#D0731B')
-                                  stop(offset="100%" stop-color='#DC9322')
-                              .skill__circle-text #{skill}
+                    .skills-group
+                      h3.skills-group__title #{skillArr[0]}
+                      .skills-group__list
+                          each skill in skillArr[1]
+                            .skills-group__list-item
+                              .skill
+                                svg.skill__circle-wrap(viewBox='0 0 100 100')
+                                  circle.skill__circle-inner(cx=50 cy=50 r=40 fill="none")
+                                  circle.skill__circle-outer(cx=50 cy=50 r=40 fill="none" stroke='url(#gradient)' stroke-width=3)
+                                  linearGradient(id='gradient' x1="0%" y1="0%" x2="100%" y2="0%")
+                                    //- stop(offset="0%" stop-color='#D0731B')
+                                    stop(offset="0%" stop-color='#D0731B')
+                                    stop(offset="100%" stop-color='#DC9322')
+                                .skill__circle-text #{skill}
       section.skills-section
         .skills-section__content
           .skills-box
@@ -92,7 +92,8 @@ block content
                 .slider__img-wrap
                   +image('content/Копия 1.jpg', 'slider__img')
                 .slider__thumb-list
-                  .slider__thumb-wrap
+                  //- TODO Вынести картинки в абсолют
+                  .slider__thumb-wrap 
                     +image('content/Копия 1.jpg', 'slider__thumb')
                   .slider__thumb-wrap
                     +image('content/Копия 2.jpg', 'slider__thumb')
