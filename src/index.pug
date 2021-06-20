@@ -140,7 +140,7 @@ block content
 
       // Footer
       footer.footer
-        .container
+        .container.footer__container
           .footer__inner
             .footer__side
               .footer__copy.text.text--grey.text--600 © 2021
@@ -155,7 +155,7 @@ block content
                 .footer__socials
                   .socials
                     each icon in ['insta', 'github', 'vk', 'envelope']
-                      a.socials__item.socials__item--circle(href="#" target='_blank')
+                      a.socials__item.socials__item--circle.socials__item--ml20(href="#" target='_blank')
                         +icon(icon, 'socials__icon')
               figure.footer__quote
                 blockquote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете

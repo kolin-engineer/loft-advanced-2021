@@ -1,6 +1,9 @@
 .footer {
   background-color: #222427;
   padding: 76px 0;
+  &__container {
+    max-width: 1436px;
+  }
   &__inner {
     display: flex;
     justify-content: space-between;
@@ -8,10 +11,6 @@
   &__copy {
     font-size: 48px;
     line-height: 65px;
-  }
-  &__left {
-  }
-  &__right {
   }
   &__side {
     display: flex;
@@ -25,8 +24,9 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    max-width: 934px;
+    max-width: 931px;
     color: rgba(#fff, 0.6);
+    line-height: 30px;
   }
   &__nav {
     flex-basis: 100%;
@@ -40,7 +40,6 @@
   }
   &__author-cite {
     font-size: 16px;
-    line-height: 30px;
     color: rgba(#fff, 0.3);
     margin-top: 16px;
   }
@@ -51,7 +50,7 @@
     margin-top: 40px;
   }
   &__quote {
-    max-width: 430px;
+    max-width: 429px;
   }
   &__quote-author {
     font-style: italic;
