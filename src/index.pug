@@ -17,14 +17,19 @@ block content
                 each icon in ['insta', 'github', 'vk', 'envelope']
                   a.socials__item(href="#" target='_blank')
                     +icon(icon, 'icon-social')
+              .header__hamburger
+                button(type='button').hamburger
+                  .hamburger__item
+                  .hamburger__item
+                  .hamburger__item
             .hero__title-box
-              .hero__title Кирил#[i о]вич Николай
               .hero__subtitle Личный сайт #[br] веб разработчика
+              .hero__title Кирил#[i о]вич Николай
             .hero__bottom
               button.button.button--outfilled
                 span.button__text Скролл
                 +icon('scroll', 'button__icon')
-            aside.aside
+            aside.aside.aside--hidden
               .aside__container 
                 .aside__content-wrap
                   .aside__header
@@ -60,8 +65,7 @@ block content
               .owner__top
                 p.text.text--grey-light Привет, меня зовут
                 h2.owner__name Николай Кирил#[em о]вич
-                p.owner__desc.text.text--grey-light Я занимаюсь разработкой современных сайтов и приложений. 
-                p.text Мне нравится делать продающие сайты и сервисы.
+                p.owner__desc.text.text--grey-light Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать продающие сайты и сервисы.
               .owner__bottom
                 em.owner__quote.text.text--400 Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
         // END owner Section
@@ -100,7 +104,7 @@ block content
           .slider.portfolio-section__slider
             .slider__inner
               .slider__preview-box
-                .slider__order 1
+                .slider__order 2
                 .slider__img-wrap
                   +image('content/Копия 1.jpg', 'slider__img')
                 .slider__thumb-list
@@ -135,10 +139,12 @@ block content
             h2.h2.testimonials__title Что обо мне говорят
             .testimonials__carousel-controls
               .carousel__controls
-                .carousel__control-next
-                  .icon.icon-chevron-left
-                .carousel__control-prev
-                  .icon.icon-chevron-right
+                .carousel__control
+                  .carousel__control-icon
+                    .icon.icon-chevron-left
+                .carousel__control
+                  .carousel__control-icon
+                    .icon.icon-chevron-right.carousel__control-icon
           .testimonials__carousel
             .carousel
               .carousel__inner

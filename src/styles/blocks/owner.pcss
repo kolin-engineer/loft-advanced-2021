@@ -4,15 +4,22 @@
     display: flex;
     max-width: 1008px;
     margin: 0 auto;
-  }
-  @include desktop {
-    max-width: 91%;
+    @include desktop {
+      width: 85%;
+    }
+    @include tablets {
+      width: 90%;
+    }
   }
   &__left-col {
     flex-basis: 432px;
     padding-right: 135px;
     @include desktop {
       flex-basis: 480px;
+    }
+    @include tablets {
+      flex-basis: 46%;
+      padding-right: 12%;
     }
   }
   &__right-col {
@@ -22,6 +29,9 @@
     margin-top: 62px;
     @include desktop {
       margin-top: 78px;
+    }
+    @include tablets {
+      margin-top: 27px;
     }
   }
   &__top {
@@ -35,6 +45,11 @@
     @include desktop {
       margin-top: 18px;
     }
+    @include tablets {
+      font-size: 30px;
+      line-height: 40px;
+      margin-top: 6px;
+    }
   }
   &__desc {
     margin-top: 31px;
@@ -42,8 +57,14 @@
   &__detail {
     display: flex;
     margin-top: 16px;
+    @include tablets {
+      margin-top: 0px;
+    }
     &-q {
       flex-basis: 175px;
+      @include tablets {
+        flex-basis: 121px;
+      }
     }
   }
   &__avatar-wrap {

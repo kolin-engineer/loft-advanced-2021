@@ -4,10 +4,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    &:not(:first-of-type) {
+    & + & {
       margin-left: 36px;
     }
+
     &--ml20 {
       &:not(:first-of-type) {
         margin-left: 20px;
@@ -30,5 +30,9 @@
     width: 23px;
     height: 23px;
     fill: rgba(#fff, 0.3);
+    @include tablets {
+      width: 25px;
+      height: 25px;
+    }
   }
 }

@@ -2,6 +2,10 @@
   &__inner {
     display: flex;
     justify-content: space-between;
+    @include tablets {
+      flex-direction: column;
+      align-items: center;
+    }
   }
   &__preview-box {
     width: 66%;
@@ -12,12 +16,22 @@
       height: 24rem;
       width: 58%;
     }
+    @include tablets {
+      width: 93%;
+      height: 359px;
+      align-self: flex-start;
+      margin-bottom: 8%;
+    }
   }
   &__desc-box {
     width: 336px;
     line-height: 40px;
     @include desktop {
       width: 30%;
+    }
+    @include tablets {
+      width: 64%;
+      text-align: center;
     }
   }
 
@@ -43,6 +57,9 @@
     @include desktop {
       font-size: 300px;
     }
+    @include tablets {
+      bottom: -22%;
+    }
   }
   /* Thumbs Nav */
   &__thumb-list {
@@ -53,6 +70,9 @@
     height: calc(100% * 0.182);
     width: 100%;
     justify-content: flex-end;
+    @include tablets {
+      bottom: 36px;
+    }
   }
   &__thumb-wrap {
     flex: 0 0 18%;
@@ -146,22 +166,39 @@
   /* Tags */
   &__tags {
     margin-bottom: 35px;
+    @include tablets {
+      text-align: center;
+      margin-bottom: 20px;
+    }
   }
   /* title */
   &__title {
     margin-bottom: 35px;
     font-weight: 700;
+    @include tablets {
+      margin-bottom: 14px;
+    }
   }
   &__desc {
     margin-bottom: 35px;
     font-size: 1rem;
     font-weight: 600;
-  }
+    margin-bottom: 46px;
 
+    @include tablets {
+      line-height: 23px;
+      margin-bottom: 22px;
+    }
+  }
+  &__link-wrap {
+    font-size: 18px;
+    @include tablets {
+      text-align: center;
+      font-size: 14px;
+    }
+  }
   &__link {
     color: #586ed3;
-    margin-top: 46px;
-    font-size: 18px;
     line-height: 25px;
     font-weight: 700;
     margin-left: 16px;

@@ -1,12 +1,20 @@
 .skills-group {
-  &:not(:last-of-type) {
+  & + & {
     margin-bottom: 32px;
+    @include tablets {
+      margin-top: 25px;
+    }
   }
   &__title {
     margin-bottom: 18px;
     font-size: 24px;
     line-height: 32px;
     font-weight: 700;
+    @include tablets {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
   }
   &__list {
     display: flex;

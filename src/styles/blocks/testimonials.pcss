@@ -9,6 +9,10 @@
     @include desktop {
       padding-right: 46.8%;
     }
+    @include tablets {
+      margin-bottom: 50px;
+      padding-right: 48.8%;
+    }
   }
   &__container {
     padding: 8% 29.9% 10% 0;
@@ -19,9 +23,15 @@
       padding-bottom: 16%;
       padding-right: 11%;
     }
+    @include tablets {
+      padding: 17% 0 19% 0;
+    }
   }
   &__carousel {
   }
   &__carousel-controls {
+    @include tablets {
+      margin-top: -2%;
+    }
   }
 }
