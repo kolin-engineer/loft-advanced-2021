@@ -1,0 +1,24 @@
+.menu {
+  display: flex;
+  margin-left: -1rem;
+  flex-wrap: wrap;
+  &__link {
+    line-height: inherit;
+    color: inherit;
+    margin-left: 1rem;
+    white-space: nowrap;
+    &:hover {
+      color: $links-color;
+    }
+  }
+  &--vertical {
+    flex-direction: column;
+    margin-left: 0;
+    .menu__link {
+      margin-left: 0;
+      &:not(:last-of-type) {
+        margin-bottom: 23px;
+      }
+    }
+  }
+}

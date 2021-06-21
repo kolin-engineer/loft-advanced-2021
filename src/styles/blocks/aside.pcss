@@ -1,0 +1,35 @@
+.aside {
+  position: fixed;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color: #fff;
+  color: #414c63;
+  width: 330px;
+  transition: width 0.3s;
+  &--hidden {
+    width: 0;
+  }
+  &__container {
+    width: 330px;
+    height: 100%;
+  }
+  &__content-wrap {
+    padding: 20.3% 12.7% 0 15.45%;
+  }
+  &__header {
+    margin-bottom: 45%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__content {
+    margin-bottom: 28%;
+  }
+  &__close {
+    width: 20px;
+    height: 20px;
+  }
+}
