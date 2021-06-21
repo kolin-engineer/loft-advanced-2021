@@ -1,1 +1,1 @@
-export {default} from "./tag.vue"
+export { default } from "./tag.vue";
