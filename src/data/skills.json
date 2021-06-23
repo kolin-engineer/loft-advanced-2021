@@ -1,0 +1,38 @@
+{
+  "Front-End": [
+    {
+      "tech": "HTML5",
+      "depth": 10
+    },
+    {
+      "tech": "CSS3",
+      "depth": 20
+    },
+    {
+      "tech": "Vue",
+      "depth": 30
+    },
+    {
+      "tech": "ES6",
+      "depth": 40
+    }
+  ],
+  "WorkFlow": [
+    {
+      "tech": "AWS",
+      "depth": 50
+    },
+    {
+      "tech": "Terminal",
+      "depth": 60
+    },
+    {
+      "tech": "Linux",
+      "depth": 70
+    },
+    {
+      "tech": "Webpack",
+      "depth": 80
+    }
+  ]
+}
