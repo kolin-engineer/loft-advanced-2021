@@ -2,15 +2,26 @@
   color: $slider-text-color;
   &__container {
     padding: 11% 0;
+    @include desktop {
+      padding-top: 12%;
+      width: 90%;
+    }
     @include tablets {
       padding: 16% 0 13%;
-      width: 90%;
+    }
+    @include phones {
+      padding: 91px 0 13%;
+      width: 100%;
     }
   }
   &__title {
     margin-bottom: 86px;
     @include tablets {
       margin-bottom: 46px;
+    }
+    @include phones {
+      text-align: center;
+      margin-bottom: 25px;
     }
   }
 }

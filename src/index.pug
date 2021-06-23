@@ -13,10 +13,11 @@ block content
                 .header__nav-desktop
                   - const menu = ["Главная","Обо мне", "Навыки", "Работы", "Отзывы"];
                   include ./components/nav.pug
-              .socials.header__socials
-                each icon in ['insta', 'github', 'vk', 'envelope']
-                  a.socials__item(href="#" target='_blank')
-                    +icon(icon, 'icon-social')
+              .header__socials
+                .socials
+                  each icon in ['insta', 'github', 'vk', 'envelope']
+                    a.socials__item(href="#" target='_blank')
+                      +icon(icon, 'icon-social')
               .header__hamburger
                 button(type='button').hamburger
                   .hamburger__item
@@ -147,40 +148,43 @@ block content
                     .icon.icon-chevron-right.carousel__control-icon
           .testimonials__carousel
             .carousel
-              .carousel__inner
-                each i in [1,2]
-                  .carousel__item
-                    figure.testimonial.testimonial--dark
-                      blockquote.blockquote.testimonial__blockquote Разработчики подрудились на славу. Кропотливый подход к работе пройдет любые испытания. Не оскверняй код IE<11
-                      .testimonial__author-box
-                        figure.testimonial__author-figure
-                          +image('content/spkorolov.jpg', 'testimonial__author-img')
-                        figcaption.testimonial__author-about
-                          .testimonial__author-name Сергей Королев
-                          .testimonial__author-desc Академик
+              .carousel__view
+                .carousel__ribbon#ribbon
+                  each i in [1,2]
+                    .carousel__item
+                      figure.testimonial.testimonial--dark
+                        blockquote.blockquote.testimonial__blockquote Разработчики подрудились на славу. Кропотливый подход к работе пройдет любые испытания. Не оскверняй код IE<11. Запустили в продакшн
+                        .testimonial__author-box
+                          figure.testimonial__author-figure
+                            +image('content/spkorolov.jpg', 'testimonial__author-img')
+                          figcaption.testimonial__author-about
+                            .testimonial__author-name #{i} Сергей Королев
+                            .testimonial__author-desc Академик
       // END Testimonials Section
 
-      // Footer
-      footer.footer
-        .container.footer__container
-          .footer__side
-            .footer__copy.text.text--grey.text--600 © 2021
-            .footer__author-box
-              .footer__author-name Кирилович Николай
-              .footer__author-cite Личный сайт #[br] веб-разработчика
-          .footer__main
-            .footer__nav
-              include ./components/nav.pug
-            .footer__desc-box
-              .footer__site-about Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
-              .footer__socials
-                .socials
-                  each icon in ['insta', 'github', 'vk', 'envelope']
-                    a.socials__item.socials__item--circle.socials__item--ml20(href="#" target='_blank')
-                      +icon(icon, 'socials__icon')
-            figure.footer__quote
-              blockquote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
-              figcaption.footer__quote-author Martin Golding
+    // Footer
+    footer.footer
+      .container.footer__container
+        .footer__side
+          .footer__copy.text.text--grey.text--600 © 2021
+          .footer__author-box
+            .footer__author-name Кирилович Николай
+            .footer__author-cite Личный сайт веб-разработчика
+        .footer__main
+          .menu.menu--phones.footer__menu
+            - const footerMenu = ["Обо мне", "Навыки", "Работы", "Отзывы"];
+            each link in footerMenu
+              a.menu__link.footer__menu-link(href="#")= link
+          .footer__desc-box
+            .footer__site-about Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+            .footer__socials
+              .socials
+                each icon in ['insta', 'github', 'vk', 'envelope']
+                  a.socials__item.socials__item--circle.socials__item--ml20(href="#" target='_blank')
+                    +icon(icon, 'socials__icon')
+          figure.footer__quote
+            blockquote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+            figcaption.footer__quote-author Martin Golding
 
 
-      // END Footer
+    // END Footer

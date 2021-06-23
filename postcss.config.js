@@ -23,10 +23,10 @@ module.exports = {
       paths: ["./src/images/icons"],
     }),
     require("cssnano"),
-    require("postcss-pxtorem")({
-      rootValue: 16,
-      propList: ["*", "!*border*"],
-      selectorBlackList: [/^html$/],
-    }),
+    // require("postcss-pxtorem")({
+    //   rootValue: 16,
+    //   propList: ["*", "!*border*"],
+    //   selectorBlackList: [/^html$/],
+    // }),
   ],
 };

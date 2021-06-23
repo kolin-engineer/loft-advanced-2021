@@ -1,11 +1,19 @@
 .menu {
+  --margin-left: 1rem;
   display: flex;
-  margin-left: -1rem;
   flex-wrap: wrap;
+  margin-left: calc(-1 * var(--margin-left));
+  &--phones {
+    @include phones {
+      --margin-left: 87px;
+      --margin-bottom: 22px;
+    }
+  }
   &__link {
     line-height: inherit;
     color: inherit;
-    margin-left: 1rem;
+    margin-left: var(--margin-left);
+    margin-bottom: var(--margin-bottom);
     white-space: nowrap;
     &:hover {
       color: $links-color;

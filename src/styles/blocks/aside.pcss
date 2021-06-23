@@ -9,12 +9,21 @@
   color: #414c63;
   width: 330px;
   transition: width 0.3s;
+  @include phones {
+    min-width: 320px;
+    width: 100%;
+  }
   &--hidden {
     width: 0;
+    min-width: 0;
   }
   &__container {
     width: 330px;
     height: 100%;
+    @include phones {
+      min-width: 320px;
+      width: 100%;
+    }
   }
   &__content-wrap {
     padding: 20.3% 12.7% 0 15.45%;

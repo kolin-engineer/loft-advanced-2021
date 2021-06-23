@@ -5,6 +5,9 @@
   @include tablets {
     padding-left: 12%;
   }
+  @include phones {
+    padding-left: 0;
+  }
   &:before {
     position: absolute;
     content: "";
@@ -22,6 +25,9 @@
       top: 11px;
       left: -2px;
     }
+    @include phones {
+      display: none;
+    }
   }
   &--dark {
     color: rgba(#fff, 0.6);
@@ -36,6 +42,9 @@
     margin-top: 31px;
     display: flex;
     align-items: center;
+    @include phones {
+      margin-top: 15px;
+    }
   }
   &__author-figure {
     width: 75px;
@@ -62,6 +71,9 @@
     margin-left: 31px;
     @include tablets {
       margin-left: 20px;
+    }
+    @include tablets {
+      margin-left: 10px;
     }
   }
 }
