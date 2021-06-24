@@ -105,35 +105,37 @@ block content
       section.portfolio 
         .container.portfolio__container
           h2.h2.portfolio__title Мои работы
-          .slider.portfolio-section__slider
-            .slider__inner
-              .slider__preview-box
-                .slider__order 2
-                .slider__img-wrap
-                  +image('content/Копия 1.jpg', 'slider__img')
-                .slider__thumb-list
-                  //- TODO Вынести картинки в абсолют
-                  .slider__thumb-wrap 
-                    +image('content/Копия 1.jpg', 'slider__thumb')
-                  .slider__thumb-wrap
-                    +image('content/Копия 2.jpg', 'slider__thumb')
-                  .slider__thumb-wrap
-                    +image('content/Копия 3.jpg', 'slider__thumb')
-                  .slider__thumb-wrap
-                    +image('content/Копия 4.jpg', 'slider__thumb')
-                .slider__nav
-                  .slider__nav-next 
-                  .slider__nav-prev 
-              .slider__desc-box
-                .slider__tags
-                  .tag HTML
-                  .tag CSS
-                  .tag JavaScript
-                h3.h3.slider__title Сайт школы образования
-                p.slider__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                .slider__link-wrap
-                  +icon('link','icon-link')
-                  a.slider__link(href="#") Посмотреть сайт
+          .portfolio-section__slider
+            #slider-widget
+            .slider
+              .slider__inner
+                .slider__preview-box
+                  .slider__order 2
+                  .slider__img-wrap
+                    +image('content/Копия 1.jpg', 'slider__img')
+                  .slider__thumb-list
+                    //- TODO Вынести картинки в абсолют
+                    .slider__thumb-wrap 
+                      +image('content/Копия 1.jpg', 'slider__thumb')
+                    .slider__thumb-wrap
+                      +image('content/Копия 2.jpg', 'slider__thumb')
+                    .slider__thumb-wrap
+                      +image('content/Копия 3.jpg', 'slider__thumb')
+                    .slider__thumb-wrap
+                      +image('content/Копия 4.jpg', 'slider__thumb')
+                  .slider__nav
+                    .slider__nav-next 
+                    .slider__nav-prev 
+                .slider__desc-box
+                  .slider__tags
+                    .tag HTML
+                    .tag CSS
+                    .tag JavaScript
+                  h3.h3.slider__title Сайт школы образования
+                  p.slider__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                  .slider__link-wrap
+                    +icon('link','icon-link')
+                    a.slider__link(href="#") Посмотреть сайт
       // END Porftolio-Section
       
       // Testimonials Section
