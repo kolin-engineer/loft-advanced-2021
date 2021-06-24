@@ -4,13 +4,21 @@
     justify-content: space-between;
   }
   &__preview-box {
-    width: calc(100vw * 0.54);
-    max-width: 975px;
+    width: 66%;
+    /* max-width: 975px; */
     height: 550px;
     position: relative;
+    @include desktop {
+      height: 24rem;
+      width: 58%;
+    }
   }
   &__desc-box {
     width: 336px;
+    line-height: 40px;
+    @include desktop {
+      width: 30%;
+    }
   }
 
   &__img-wrap {
@@ -32,6 +40,9 @@
     right: 60px;
     transform: translateX(100%);
     display: block;
+    @include desktop {
+      font-size: 300px;
+    }
   }
   /* Thumbs Nav */
   &__thumb-list {
@@ -61,11 +72,15 @@
   /* Navigation Arrows*/
   &__nav {
     position: absolute;
-    right: -5%;
+    right: 0;
     bottom: 10%;
     width: 5%;
     height: calc(100% * 0.182);
-    min-width: 50px;
+    width: 53px;
+    transform: translateX(100%);
+    @include desktop {
+      width: 34px;
+    }
   }
   &__nav-next,
   &__nav-prev {
@@ -85,6 +100,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    @include desktop {
+      width: 7px;
+      height: 12px;
+    }
   }
   &__nav-prev:before {
     background: svg-load(
@@ -125,17 +144,20 @@
     }
   }
   /* Tags */
+  &__tags {
+    margin-bottom: 35px;
+  }
   /* title */
   &__title {
-    margin-top: 35px;
+    margin-bottom: 35px;
+    font-weight: 700;
   }
   &__desc {
-    margin-top: 35px;
-    line-height: 30px;
+    margin-bottom: 35px;
+    font-size: 1rem;
+    font-weight: 600;
   }
-  &__link-wrap {
-    margin-top: 45px;
-  }
+
   &__link {
     color: #586ed3;
     margin-top: 46px;

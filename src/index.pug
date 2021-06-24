@@ -8,7 +8,7 @@ block content
         section.hero
           .container.hero__container
             header.header.hero__header
-              a.logo(href="#") НК
+              a.logo(href="#") NK
               .header__nav
                 include ./components/nav.pug
               .socials.header__socials
@@ -34,7 +34,7 @@ block content
               .owner__bottom
                 .owner__detail
                   .owner__detail-q.text--grey Проживаю:
-                  .owner__detail-a Купертино
+                  .owner__detail-a California
                 .owner__detail
                   .owner__detail-q.text--grey Возраст:
                   .owner__detail-a 32 года
@@ -53,38 +53,35 @@ block content
       // END Bg-train
 
       section.skills
-        .skills__container
-          .skills__container-inner
-            .skills__title-wrap
-              h3.h3.skills__title Чем я могу быть полезен
-              .skills__subtitle Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-            .skills__list
-              .skills__list-inner
-                -  const skills = [["Front-end", ['HTML5', "CSS3", "JavaScript", "jQuery & Vue"]], ["WorkFlow", ["GIT", "Terminal", "Gulp", "Webpack"]]];
-                  each skillArr in skills
-                    .skills-group
-                      h3.skills-group__title #{skillArr[0]}
-                      .skills-group__list
-                          each skill in skillArr[1]
-                            .skills-group__list-item
-                              .skill
-                                svg.skill__circle-wrap(viewBox='0 0 100 100')
-                                  circle.skill__circle-inner(cx=50 cy=50 r=40 fill="none")
-                                  circle.skill__circle-outer(cx=50 cy=50 r=40 fill="none" stroke='url(#gradient)' stroke-width=3)
-                                  linearGradient(id='gradient' x1="0%" y1="0%" x2="100%" y2="0%")
-                                    //- stop(offset="0%" stop-color='#D0731B')
-                                    stop(offset="0%" stop-color='#D0731B')
-                                    stop(offset="100%" stop-color='#DC9322')
-                                .skill__circle-text #{skill}
-      section.skills-section
-        .skills-section__content
-          .skills-box
+        .container.skills__container
+          .skills__title-wrap
+            h3.h3.skills__title Чем я могу быть полезен
+            .skills__subtitle Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+          .skills__list
+            - const frontEnd = [{tech:'HTML5', depth:94}, {tech:'CSS3', depth:88}, {tech:'JavaScript', depth:77}, {tech:'jQuery & Vue', depth:50}];
+            - const workFlow = [{tech:'Git', depth:80}, {tech:'Terminal', depth:70}, {tech:'Webpack', depth:60}, {tech:'Linux', depth:50}];
+            - const skills = [["Front-end", frontEnd], ['WorkFlow', workFlow]];
+              each skillArr in skills
+                .skills-group
+                  h3.skills-group__title #{skillArr[0]}
+                  .skills-group__list
+                      each skill in skillArr[1]
+                        .skills-group__list-item
+                          .skill
+                            svg.skill__circle-wrap(viewBox='0 0 100 100')
+                              circle.skill__circle-inner(cx=50 cy=50 r=40 fill="none")
+                              circle.skill__circle-outer(stroke-dashoffset=`${256 - 256 * parseInt(skill.depth) / 100}` cx=50 cy=50 r=40 fill="none" stroke='url(#gradient)' stroke-width=3)
+                              linearGradient(id='gradient' x1="0%" y1="0%" x2="100%" y2="0%")
+                                //- stop(offset="0%" stop-color='#D0731B')
+                                stop(offset="0%" stop-color='#D0731B')
+                                stop(offset="100%" stop-color='#DC9322')
+                            .skill__circle-text #{skill.tech}
       // END Skills Sections
 
       // Porftolio-Section
-      section.portfolio-section 
-        .container
-          h2.h2 Мои работы
+      section.portfolio 
+        .container.portfolio__container
+          h2.h2.portfolio__title Мои работы
           .slider.portfolio-section__slider
             .slider__inner
               .slider__preview-box
@@ -115,17 +112,20 @@ block content
                   +icon('link','icon-link')
                   a.slider__link(href="#") Посмотреть сайт
       // END Porftolio-Section
+      
       // Testimonials Section
-      section.testimonials-section
-        .testimonials-section__content
-          h2.h2.testimonials-section__title Что обо мне говорят
-          .testimonials-section__carousel
-            .carousel
+      section.testimonials
+        .container.testimonials__container
+          .testimonials__title-wrap
+            h2.h2.testimonials__title Что обо мне говорят
+            .testimonials__carousel-controls
               .carousel__controls
                 .carousel__control-next
                   .icon.icon-chevron-left
                 .carousel__control-prev
                   .icon.icon-chevron-right
+          .testimonials__carousel
+            .carousel
               .carousel__inner
                 each i in [1,2]
                   .carousel__item
@@ -141,26 +141,25 @@ block content
 
       // Footer
       footer.footer
-        .container
-          .footer__inner
-            .footer__side
-              .footer__copy.text.text--grey.text--600 © 2021
-              .footer__author-box
-                .footer__author-name Кирилович Николай
-                .footer__author-cite Личный сайт веб-разработчика
-            .footer__main
-              .footer__nav
-                include ./components/nav.pug
-              .footer__desc-box
-                .footer__site-about Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
-                .footer__socials
-                  .socials
-                    each icon in ['insta', 'github', 'vk', 'envelope']
-                      a.socials__item.socials__item--circle(href="#" target='_blank')
-                        +icon(icon, 'socials__icon')
-              figure.footer__quote
-                blockquote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
-                figcaption.footer__quote-author Martin Golding
+        .container.footer__container
+          .footer__side
+            .footer__copy.text.text--grey.text--600 © 2021
+            .footer__author-box
+              .footer__author-name Кирилович Николай
+              .footer__author-cite Личный сайт #[br] веб-разработчика
+          .footer__main
+            .footer__nav
+              include ./components/nav.pug
+            .footer__desc-box
+              .footer__site-about Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+              .footer__socials
+                .socials
+                  each icon in ['insta', 'github', 'vk', 'envelope']
+                    a.socials__item.socials__item--circle.socials__item--ml20(href="#" target='_blank')
+                      +icon(icon, 'socials__icon')
+            figure.footer__quote
+              blockquote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+              figcaption.footer__quote-author Martin Golding
 
 
       // END Footer

@@ -2,21 +2,27 @@
   &__container {
     padding: 4.7rem 0 274px;
     display: flex;
-    max-width: 61rem;
+    max-width: 1008px;
     margin: 0 auto;
   }
   @include desktop {
-    max-width: 86%;
+    max-width: 91%;
   }
   &__left-col {
     flex-basis: 432px;
     padding-right: 135px;
+    @include desktop {
+      flex-basis: 480px;
+    }
   }
   &__right-col {
     flex: 1;
   }
   &__bottom {
     margin-top: 62px;
+    @include desktop {
+      margin-top: 78px;
+    }
   }
   &__top {
     min-height: 200px;
@@ -26,6 +32,9 @@
     line-height: 49px;
     font-weight: bold;
     margin-top: 15px;
+    @include desktop {
+      margin-top: 18px;
+    }
   }
   &__desc {
     margin-top: 31px;
