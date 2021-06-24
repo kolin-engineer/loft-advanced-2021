@@ -1,0 +1,17 @@
+.fade-enter {
+  opacity: 0;
+  transform: translateX(100%) scaleX(0.6);
+}
+.fade-enter-to,
+.fade-leave {
+  opacity: 1;
+  transform: translateX(0%) scaleX(1);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 1s;
+}
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(-100%) scaleX(0.1);
+}

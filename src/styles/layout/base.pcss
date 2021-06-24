@@ -1,10 +1,9 @@
+:root {
+  --margin-left: 1rem;
+  --margin-bottom: 1rem;
+}
 html {
-  @include desktop {
-    font-size: 16px;
-  }
-  @include tablets {
-    font-size: 14px;
-  }
+  font-size: 16px;
 }
 body,
 html {
@@ -13,11 +12,14 @@ html {
 
 body {
   font-family: "Open Sans", Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.42;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #fff;
+  @include tablets {
+    font-size: 14px;
+  }
 }
 
 .wrapper {
@@ -79,6 +81,7 @@ p {
 button[type="button"] {
   cursor: pointer;
   background-color: transparent;
+  padding: 0;
 }
 
 a {

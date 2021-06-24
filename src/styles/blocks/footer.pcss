@@ -2,27 +2,48 @@
   background-color: #222427;
   &__container {
     padding: 4.3% 0;
+    display: flex;
+    justify-content: space-between;
     width: 82%;
     @include desktop {
       width: 90%;
       padding-top: 6.7%;
     }
-    display: flex;
-    justify-content: space-between;
+    @include tablets {
+      padding-top: 9%;
+    }
+    @include phones {
+      width: 81%;
+      padding-top: 67px;
+      display: block;
+    }
   }
   &__side {
     display: flex;
-    width: 25%;
+    width: 27%;
     justify-content: space-between;
     flex-wrap: wrap;
-    @include desktop {
+    @include tablets {
+      width: 24%;
+      align-self: flex-start;
+    }
+    @include phones {
+      width: 100%;
+      display: block;
+      margin-bottom: 45px;
     }
   }
   &__copy {
     font-size: 48px;
     line-height: 65px;
+    white-space: nowrap;
     @include desktop {
       width: 100%;
+      margin-bottom: 20px;
+    }
+    @include phones {
+      width: 100%;
+      margin-bottom: 26px;
     }
   }
   &__author-box {
@@ -32,6 +53,12 @@
       flex-basis: 80%;
       margin-top: 10%;
     }
+    @include tablets {
+      margin-top: 0px;
+    }
+    @include phones {
+      width: 100%;
+    }
   }
   &__author-name {
     text-transform: uppercase;
@@ -39,6 +66,13 @@
     line-height: 30px;
     font-weight: 700;
     margin-bottom: 15%;
+    @include tablets {
+      margin-bottom: 18px;
+    }
+    @include phones {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
   }
   &__author-cite {
     word-wrap: normal;
@@ -56,22 +90,48 @@
     @include desktop {
       width: 75%;
     }
+    @include tablets {
+      width: 66%;
+    }
+    @include phones {
+      display: block;
+      width: 100%;
+    }
   }
-  &__nav {
+  &__menu {
     flex-basis: 100%;
-    margin-bottom: 47px;
     line-height: 22px;
+    margin-bottom: 47px;
+    @include tablets {
+      margin-top: -1.8%;
+      margin-bottom: 33px;
+    }
+    @include phones {
+      margin-bottom: 20px;
+    }
   }
+
   &__desc-box {
     width: 37%;
     @include desktop {
       width: 45%;
+    }
+    @include tablets {
+      width: 100%;
+      margin-bottom: 45px;
     }
   }
   &__site-about {
     margin-bottom: 40px;
     @include desktop {
       margin-bottom: 8.8%;
+    }
+    @include tablets {
+      margin-bottom: 23px;
+      line-height: 25px;
+    }
+    @include phones {
+      margin-bottom: 13px;
     }
   }
   &__socials {
@@ -81,11 +141,17 @@
     @include desktop {
       width: 54%;
     }
+    @include tablets {
+      width: 100%;
+    }
   }
   &__quote-author {
     font-style: italic;
     margin-top: 31px;
     line-height: 22px;
     color: #fff;
+    @include tablets {
+      margin-top: 9px;
+    }
   }
 }

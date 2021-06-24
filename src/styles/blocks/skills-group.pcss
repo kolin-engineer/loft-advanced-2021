@@ -1,18 +1,36 @@
 .skills-group {
-  &:not(:last-of-type) {
+  & + & {
     margin-bottom: 32px;
+    @include tablets {
+      margin-top: 25px;
+    }
+    @include phones {
+      margin-top: 35px;
+    }
   }
   &__title {
     margin-bottom: 18px;
     font-size: 24px;
     line-height: 32px;
     font-weight: 700;
+    @include tablets {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    @include phones {
+      margin-bottom: 10px;
+    }
   }
   &__list {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
   &__list-item {
     width: 23%;
+    @include phones {
+      width: 50%;
+    }
   }
 }

@@ -6,7 +6,16 @@
   &__nav {
     @include desktop {
     }
+    @include tablets {
+      display: none;
+    }
   }
   &__socials {
+    @include tablets {
+      padding-left: 30%;
+    }
+    @include phones {
+      display: none;
+    }
   }
 }

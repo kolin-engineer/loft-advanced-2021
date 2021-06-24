@@ -1,0 +1,22 @@
+script(id="skills-list" type="text/x-template")
+  .skills-widget
+    SkillsGroup(v-for='(skills, groupName) in skills' :key='groupName' :groupName='groupName' :skills="skills")  
+
+script(id="skills-group" type="text/x-template")
+  .skills-group
+    h3.skills-group__title {{ groupName }}
+    .skills-group__list
+      SkillsItem(v-for="skill in skills" :key='skill.tech' :tech='skill.tech' :depth="skill.depth")
+            
+
+script(id="skills-item" type="text/x-template") 
+  .skills-group__list-item     
+    .skill
+      svg.skill__circle-wrap(viewBox='0 0 100 100')
+        circle.skill__circle-inner(cx=50 cy=50 r=40 fill="none")
+        circle.skill__circle-outer(:stroke-dashoffset=`strokeDashoffset` cx=50 cy=50 r=40 fill="none" stroke='url(#gradient)' stroke-width=3)
+        linearGradient(id='gradient' x1="0%" y1="0%" x2="100%" y2="0%")
+          //- stop(offset="0%" stop-color='#D0731B')
+          stop(offset="0%" stop-color='#D0731B')
+          stop(offset="100%" stop-color='#DC9322')
+      .skill__circle-text {{tech}}        

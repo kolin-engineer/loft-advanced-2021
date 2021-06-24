@@ -1,6 +1,8 @@
 extends ./base.pug
 block content
-  .wrapper
+  #skills
+    div {{ skills }}
+  .wrapper#app
     // 
     .maincontent
       // Same background for two sections
@@ -10,20 +12,41 @@ block content
             header.header.hero__header
               a.logo(href="#") NK
               .header__nav
-                include ./components/nav.pug
-              .socials.header__socials
-                each icon in ['insta', 'github', 'vk', 'envelope']
-                  a.socials__item(href="#" target='_blank')
-                    +icon(icon, 'icon-social')
-
+                .header__nav-desktop
+                  - const menu = ["Главная","Обо мне", "Навыки", "Работы", "Отзывы"];
+                  include ./components/nav.pug
+              .header__socials
+                .socials
+                  each icon in ['insta', 'github', 'vk', 'envelope']
+                    a.socials__item(href="#" target='_blank')
+                      +icon(icon, 'icon-social')
+              .header__hamburger
+                button(type='button').hamburger
+                  .hamburger__item
+                  .hamburger__item
+                  .hamburger__item
             .hero__title-box
-              .hero__title Кирил#[i о]вич Николай
               .hero__subtitle Личный сайт #[br] веб разработчика
-
+              .hero__title Кирил#[i о]вич Николай
             .hero__bottom
               button.button.button--outfilled
                 span.button__text Скролл
                 +icon('scroll', 'button__icon')
+            aside.aside.aside--hidden
+              .aside__container 
+                .aside__content-wrap
+                  .aside__header
+                    button(type="button").aside__close
+                      +icon('cross', 'icon icon--dark')
+                  .aside__content
+                    .menu.menu--vertical
+                      each link in menu
+                        a.menu__link(href="#")= link
+                  .aside__footer
+                    .socials
+                      each icon in ['insta', 'github', 'vk', 'envelope']
+                        a.socials__item(href="#" target='_blank')
+                          +icon(icon, 'icon-social icon-social--dark')
         // END Hero section
         section.owner.text.text--600
           .container.owner__container
@@ -45,8 +68,7 @@ block content
               .owner__top
                 p.text.text--grey-light Привет, меня зовут
                 h2.owner__name Николай Кирил#[em о]вич
-                p.owner__desc.text.text--grey-light Я занимаюсь разработкой современных сайтов и приложений. 
-                p.text Мне нравится делать продающие сайты и сервисы.
+                p.owner__desc.text.text--grey-light Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать продающие сайты и сервисы.
               .owner__bottom
                 em.owner__quote.text.text--400 Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
         // END owner Section
@@ -58,59 +80,62 @@ block content
             h3.h3.skills__title Чем я могу быть полезен
             .skills__subtitle Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
           .skills__list
-            - const frontEnd = [{tech:'HTML5', depth:94}, {tech:'CSS3', depth:88}, {tech:'JavaScript', depth:77}, {tech:'jQuery & Vue', depth:50}];
-            - const workFlow = [{tech:'Git', depth:80}, {tech:'Terminal', depth:70}, {tech:'Webpack', depth:60}, {tech:'Linux', depth:50}];
-            - const skills = [["Front-end", frontEnd], ['WorkFlow', workFlow]];
-              each skillArr in skills
-                .skills-group
-                  h3.skills-group__title #{skillArr[0]}
-                  .skills-group__list
-                      each skill in skillArr[1]
-                        .skills-group__list-item
-                          .skill
-                            svg.skill__circle-wrap(viewBox='0 0 100 100')
-                              circle.skill__circle-inner(cx=50 cy=50 r=40 fill="none")
-                              circle.skill__circle-outer(stroke-dashoffset=`${256 - 256 * parseInt(skill.depth) / 100}` cx=50 cy=50 r=40 fill="none" stroke='url(#gradient)' stroke-width=3)
-                              linearGradient(id='gradient' x1="0%" y1="0%" x2="100%" y2="0%")
-                                //- stop(offset="0%" stop-color='#D0731B')
-                                stop(offset="0%" stop-color='#D0731B')
-                                stop(offset="100%" stop-color='#DC9322')
-                            .skill__circle-text #{skill.tech}
+            #skills-widget
+            //- - const frontEnd = [{tech:'HTML5', depth:94}, {tech:'CSS3', depth:88}, {tech:'JavaScript', depth:77}, {tech:'jQuery & Vue', depth:50}];
+            //- - const workFlow = [{tech:'Git', depth:80}, {tech:'Terminal', depth:70}, {tech:'Webpack', depth:60}, {tech:'Linux', depth:50}];
+            //- - const skills = [["Front-end", frontEnd], ['WorkFlow', workFlow]];
+            //-   each skillArr in skills
+            //-     .skills-group
+            //-       h3.skills-group__title #{skillArr[0]}
+            //-       .skills-group__list
+            //-           each skill in skillArr[1]
+            //-             .skills-group__list-item
+            //-               .skill
+            //-                 svg.skill__circle-wrap(viewBox='0 0 100 100')
+            //-                   circle.skill__circle-inner(cx=50 cy=50 r=40 fill="none")
+            //-                   circle.skill__circle-outer(stroke-dashoffset=`${256 - 256 * parseInt(skill.depth) / 100}` cx=50 cy=50 r=40 fill="none" stroke='url(#gradient)' stroke-width=3)
+            //-                   linearGradient(id='gradient' x1="0%" y1="0%" x2="100%" y2="0%")
+            //-                     //- stop(offset="0%" stop-color='#D0731B')
+            //-                     stop(offset="0%" stop-color='#D0731B')
+            //-                     stop(offset="100%" stop-color='#DC9322')
+            //-                 .skill__circle-text #{skill.tech}
       // END Skills Sections
 
       // Porftolio-Section
       section.portfolio 
         .container.portfolio__container
           h2.h2.portfolio__title Мои работы
-          .slider.portfolio-section__slider
-            .slider__inner
-              .slider__preview-box
-                .slider__order 1
-                .slider__img-wrap
-                  +image('content/Копия 1.jpg', 'slider__img')
-                .slider__thumb-list
-                  //- TODO Вынести картинки в абсолют
-                  .slider__thumb-wrap 
-                    +image('content/Копия 1.jpg', 'slider__thumb')
-                  .slider__thumb-wrap
-                    +image('content/Копия 2.jpg', 'slider__thumb')
-                  .slider__thumb-wrap
-                    +image('content/Копия 3.jpg', 'slider__thumb')
-                  .slider__thumb-wrap
-                    +image('content/Копия 4.jpg', 'slider__thumb')
-                .slider__nav
-                  .slider__nav-next 
-                  .slider__nav-prev 
-              .slider__desc-box
-                .slider__tags
-                  .tag HTML
-                  .tag CSS
-                  .tag JavaScript
-                h3.h3.slider__title Сайт школы образования
-                p.slider__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                .slider__link-wrap
-                  +icon('link','icon-link')
-                  a.slider__link(href="#") Посмотреть сайт
+          .portfolio-section__slider
+            #slider-widget
+            .slider
+              .slider__inner
+                .slider__preview-box
+                  .slider__order 2
+                  .slider__img-wrap
+                    +image('content/Копия 1.jpg', 'slider__img')
+                  .slider__thumb-list
+                    //- TODO Вынести картинки в абсолют
+                    .slider__thumb-wrap 
+                      +image('content/Копия 1.jpg', 'slider__thumb')
+                    .slider__thumb-wrap
+                      +image('content/Копия 2.jpg', 'slider__thumb')
+                    .slider__thumb-wrap
+                      +image('content/Копия 3.jpg', 'slider__thumb')
+                    .slider__thumb-wrap
+                      +image('content/Копия 4.jpg', 'slider__thumb')
+                  .slider__nav
+                    .slider__nav-next 
+                    .slider__nav-prev 
+                .slider__desc-box
+                  .slider__tags
+                    .tag HTML
+                    .tag CSS
+                    .tag JavaScript
+                  h3.h3.slider__title Сайт школы образования
+                  p.slider__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                  .slider__link-wrap
+                    +icon('link','icon-link')
+                    a.slider__link(href="#") Посмотреть сайт
       // END Porftolio-Section
       
       // Testimonials Section
@@ -120,46 +145,51 @@ block content
             h2.h2.testimonials__title Что обо мне говорят
             .testimonials__carousel-controls
               .carousel__controls
-                .carousel__control-next
-                  .icon.icon-chevron-left
-                .carousel__control-prev
-                  .icon.icon-chevron-right
+                .carousel__control
+                  .carousel__control-icon
+                    .icon.icon-chevron-left
+                .carousel__control
+                  .carousel__control-icon
+                    .icon.icon-chevron-right.carousel__control-icon
           .testimonials__carousel
             .carousel
-              .carousel__inner
-                each i in [1,2]
-                  .carousel__item
-                    figure.testimonial.testimonial--dark
-                      blockquote.blockquote.testimonial__blockquote Разработчики подрудились на славу. Кропотливый подход к работе пройдет любые испытания. Не оскверняй код IE<11
-                      .testimonial__author-box
-                        figure.testimonial__author-figure
-                          +image('content/spkorolov.jpg', 'testimonial__author-img')
-                        figcaption.testimonial__author-about
-                          .testimonial__author-name Сергей Королев
-                          .testimonial__author-desc Академик
+              .carousel__view
+                .carousel__ribbon#ribbon
+                  each i in [1,2]
+                    .carousel__item
+                      figure.testimonial.testimonial--dark
+                        blockquote.blockquote.testimonial__blockquote Разработчики подрудились на славу. Кропотливый подход к работе пройдет любые испытания. Не оскверняй код IE<11. Запустили в продакшн
+                        .testimonial__author-box
+                          figure.testimonial__author-figure
+                            +image('content/spkorolov.jpg', 'testimonial__author-img')
+                          figcaption.testimonial__author-about
+                            .testimonial__author-name #{i} Сергей Королев
+                            .testimonial__author-desc Академик
       // END Testimonials Section
 
-      // Footer
-      footer.footer
-        .container.footer__container
-          .footer__side
-            .footer__copy.text.text--grey.text--600 © 2021
-            .footer__author-box
-              .footer__author-name Кирилович Николай
-              .footer__author-cite Личный сайт #[br] веб-разработчика
-          .footer__main
-            .footer__nav
-              include ./components/nav.pug
-            .footer__desc-box
-              .footer__site-about Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
-              .footer__socials
-                .socials
-                  each icon in ['insta', 'github', 'vk', 'envelope']
-                    a.socials__item.socials__item--circle.socials__item--ml20(href="#" target='_blank')
-                      +icon(icon, 'socials__icon')
-            figure.footer__quote
-              blockquote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
-              figcaption.footer__quote-author Martin Golding
+    // Footer
+    footer.footer
+      .container.footer__container
+        .footer__side
+          .footer__copy.text.text--grey.text--600 © 2021
+          .footer__author-box
+            .footer__author-name Кирилович Николай
+            .footer__author-cite Личный сайт веб-разработчика
+        .footer__main
+          .menu.menu--phones.footer__menu
+            - const footerMenu = ["Обо мне", "Навыки", "Работы", "Отзывы"];
+            each link in footerMenu
+              a.menu__link.footer__menu-link(href="#")= link
+          .footer__desc-box
+            .footer__site-about Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+            .footer__socials
+              .socials
+                each icon in ['insta', 'github', 'vk', 'envelope']
+                  a.socials__item.socials__item--circle.socials__item--ml20(href="#" target='_blank')
+                    +icon(icon, 'socials__icon')
+          figure.footer__quote
+            blockquote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+            figcaption.footer__quote-author Martin Golding
 
 
-      // END Footer
+    // END Footer
