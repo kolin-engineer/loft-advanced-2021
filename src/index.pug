@@ -18,7 +18,7 @@ block content
                   each icon in ['insta', 'github', 'vk', 'envelope']
                     a.socials__item(href="#" target='_blank')
                       +icon(icon, 'icon-social')
-              .header__hamburger
+              .header__hamburger(data-target-element='#mobile-menu')
                 button(type='button').hamburger
                   .hamburger__item
                   .hamburger__item
@@ -30,11 +30,11 @@ block content
               button.button.button--outfilled
                 span.button__text Скролл
                 +icon('scroll', 'button__icon')
-            aside.aside.aside--hidden
+            aside.aside.aside--hidden#mobile-menu(data-hide-class='aside--hidden')
               .aside__container 
                 .aside__content-wrap
                   .aside__header
-                    button(type="button").aside__close
+                    button(type="button" data-target-element='#mobile-menu').aside__close
                       +icon('cross', 'icon icon--dark')
                   .aside__content
                     .menu.menu--vertical
