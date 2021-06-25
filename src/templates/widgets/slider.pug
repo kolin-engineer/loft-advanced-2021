@@ -1,56 +1,60 @@
+//- Slider (root)
 script(type='text/x-template' id='t-slider')
   .slider
-    .slider__inner
-      SliderPreview(:portfolio="portfolio")
-        .slider__thumb-list
-          //- TODO Вынести картинки в абсолют
-          .slider__thumb-wrap 
-            +image('content/Копия 1.jpg', 'slider__thumb')
-          .slider__thumb-wrap
-            +image('content/Копия 2.jpg', 'slider__thumb')
-          .slider__thumb-wrap
-            +image('content/Копия 3.jpg', 'slider__thumb')
-          .slider__thumb-wrap
-            +image('content/Копия 4.jpg', 'slider__thumb')
-        //- .slider__nav
-        //-   .slider__nav-next 
-        //-   .slider__nav-prev 
-      .slider__desc-box
-        .slider__tags
-          .tag HTML
-          .tag CSS
-          .tag JavaScript
-        h3.h3.slider__title Сайт школы образования
-        p.slider__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-        .slider__link-wrap
-          +icon('link','icon-link')
-          a.slider__link(href="#") Посмотреть сайт
+    SliderPreview(:portfolio="portfolio")
 
-
+//- Slider Preview
 script(type='text/x-template' id='t-slider-preview')
-  .slider__preview-box
-    .slider__order {{ currentImgOrder }}
-    SliderList(:gallery="gallery" :showImgId="currentImgId")
-    .slider__nav
-      .slider__nav-next(@click="currentImgId += 1")
-      .slider__nav-prev(@click="currentImgId -= 1")
-
-
-script(type='text/x-template' id='t-slider-list')
-  transition-group.slider__img-wrap(tag='div' name='slide')
-    SliderItem(v-for="imgObj in gallery" :filename="imgObj.filename" :key='imgObj.id' v-if="imgObj.id === showImgId")
-
-script(type='text/x-template' id='t-slider-item')
-  //- props: ['filename']
-  .slider__img-wrap
-    img(src=require(`images/content/Копия 1.jpg`).default class="slider__img" :alt="filename")
+  .slider__inner
+    .slider__preview-box
+      .slider__order {{ currentImgOrder }}
+      SliderList(:gallery="gallery" :showImgId="currentImgId")
+      SliderThumbList(:gallery="gallery" :showImgId="currentImgId" @set-slide='setSlide')
+      SliderNav(@change-slide='changeSlide')
+    SliderDesc(:portfolio="portfolio", :showWorkId='currentImgId')
     
+//- Slider Nav
+script(type='text/x-template' id='t-slider-nav')
+  .slider__nav
+    .slider__nav-next(@click=`changeSlide(1)`)
+    .slider__nav-prev(@click=`changeSlide(-1)`)
+
+//- Slider List
+script(type='text/x-template' id='t-slider-list')
+  transition-group.slider__img-wrap(tag='div' name='fade')
+    SliderItem.slider__img(v-for="imgObj in gallery" :filename="imgObj.filename" :key='imgObj.id' v-if="imgObj.id === showImgId")
+
+//- Slider Item
+script(type='text/x-template' id='t-slider-item')
+  img(:src="filename" :alt="filename")
+    
+//- Slider Thumb List
+script(type='text/x-template' id='t-slider-thumb-list')
+  .slider__thumb-list
+    SliderThumbItem.slider__thumb(:filename='imgObj.filename' v-for='imgObj in gallery' :key='imgObj.id' :id="imgObj.id" :showImgId='showImgId' @set-slide="setSlide")
+    
+//- Slider Thumb Item
+script(type='text/x-template' id='t-slider-thumb-item')
+  .slider__thumb-wrap(:class="{'slider__thumb-wrap--active': id === showImgId}" @click=`$emit('set-slide',id)`)
+    img.slider__thumb(:src="filename" :alt="filename")
+
+//- Slider Desc
+script(type='text/x-template' id='t-slider-desc')
+  transition-group.slider__desc-box(tag='div' name='fade')
+    .slider__desc-wrap(v-for="work in portfolio" :key='work.id' v-if='work.id === showWorkId')
+      .slider__tags
+        TagItem(v-for='tag in work.tags' :tag='tag' :key='tag')
+      h3.h3.slider__title {{ work.name }}
+      p.slider__desc {{ work.desc }}
+      .slider__link-wrap
+        +icon('link','icon-link')
+        a.slider__link(:href="work.siteLink" target="_blank") Посмотреть сайт
 
 
-//- pre 
-//-   done Общий контейнер виджета
-//-   doneКомпонент с картинкой текущего слайда
-//-   Превью всех слайдов
-//-   Кнопки вперед/назад
-//-   Текстовая информация
-//-   Теги
+  //- pre 
+  //-   done Общий контейнер виджета
+  //-   doneКомпонент с картинкой текущего слайда
+  //-   Превью всех слайдов
+  //-   Кнопки вперед/назад
+  //-   Текстовая информация
+  //-   Теги

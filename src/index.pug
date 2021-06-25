@@ -79,24 +79,6 @@ block content
             .skills__subtitle Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
           .skills__list
             #skills-widget
-            //- - const frontEnd = [{tech:'HTML5', depth:94}, {tech:'CSS3', depth:88}, {tech:'JavaScript', depth:77}, {tech:'jQuery & Vue', depth:50}];
-            //- - const workFlow = [{tech:'Git', depth:80}, {tech:'Terminal', depth:70}, {tech:'Webpack', depth:60}, {tech:'Linux', depth:50}];
-            //- - const skills = [["Front-end", frontEnd], ['WorkFlow', workFlow]];
-            //-   each skillArr in skills
-            //-     .skills-group
-            //-       h3.skills-group__title #{skillArr[0]}
-            //-       .skills-group__list
-            //-           each skill in skillArr[1]
-            //-             .skills-group__list-item
-            //-               .skill
-            //-                 svg.skill__circle-wrap(viewBox='0 0 100 100')
-            //-                   circle.skill__circle-inner(cx=50 cy=50 r=40 fill="none")
-            //-                   circle.skill__circle-outer(stroke-dashoffset=`${256 - 256 * parseInt(skill.depth) / 100}` cx=50 cy=50 r=40 fill="none" stroke='url(#gradient)' stroke-width=3)
-            //-                   linearGradient(id='gradient' x1="0%" y1="0%" x2="100%" y2="0%")
-            //-                     //- stop(offset="0%" stop-color='#D0731B')
-            //-                     stop(offset="0%" stop-color='#D0731B')
-            //-                     stop(offset="100%" stop-color='#DC9322')
-            //-                 .skill__circle-text #{skill.tech}
       // END Skills Sections
 
       // Porftolio-Section
@@ -105,35 +87,6 @@ block content
           h2.h2.portfolio__title Мои работы
           .portfolio-section__slider
             #slider-widget
-            .slider
-              .slider__inner
-                .slider__preview-box
-                  .slider__order 2
-                  .slider__img-wrap
-                    +image('content/Копия 1.jpg', 'slider__img')
-                  .slider__thumb-list
-                    //- TODO Вынести картинки в абсолют
-                    .slider__thumb-wrap 
-                      +image('content/Копия 1.jpg', 'slider__thumb')
-                    .slider__thumb-wrap
-                      +image('content/Копия 2.jpg', 'slider__thumb')
-                    .slider__thumb-wrap
-                      +image('content/Копия 3.jpg', 'slider__thumb')
-                    .slider__thumb-wrap
-                      +image('content/Копия 4.jpg', 'slider__thumb')
-                  .slider__nav
-                    .slider__nav-next 
-                    .slider__nav-prev 
-                .slider__desc-box
-                  .slider__tags
-                    .tag HTML
-                    .tag CSS
-                    .tag JavaScript
-                  h3.h3.slider__title Сайт школы образования
-                  p.slider__desc Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                  .slider__link-wrap
-                    +icon('link','icon-link')
-                    a.slider__link(href="#") Посмотреть сайт
       // END Porftolio-Section
       
       // Testimonials Section
