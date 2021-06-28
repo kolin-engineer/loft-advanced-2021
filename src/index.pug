@@ -92,30 +92,7 @@ block content
       // Testimonials Section
       section.testimonials
         .container.testimonials__container
-          .testimonials__title-wrap
-            h2.h2.testimonials__title Что обо мне говорят
-            .testimonials__carousel-controls
-              .carousel__controls
-                .carousel__control
-                  .carousel__control-icon
-                    .icon.icon-chevron-left
-                .carousel__control
-                  .carousel__control-icon
-                    .icon.icon-chevron-right.carousel__control-icon
-          .testimonials__carousel
-            .carousel
-              .carousel__view
-                .carousel__ribbon#ribbon
-                  each i in [1,2]
-                    .carousel__item
-                      figure.testimonial.testimonial--dark
-                        blockquote.blockquote.testimonial__blockquote Разработчики подрудились на славу. Кропотливый подход к работе пройдет любые испытания. Не оскверняй код IE<11. Запустили в продакшн
-                        .testimonial__author-box
-                          figure.testimonial__author-figure
-                            +image('content/spkorolov.jpg', 'testimonial__author-img')
-                          figcaption.testimonial__author-about
-                            .testimonial__author-name #{i} Сергей Королев
-                            .testimonial__author-desc Академик
+          #carousel-widget
       // END Testimonials Section
 
     // Footer
