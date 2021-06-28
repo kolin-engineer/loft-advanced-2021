@@ -1,0 +1,26 @@
+script(type='text/x-template' id='t-carousel')
+  .carousel
+    .testimonials__title-wrap
+      h2.h2.testimonials__title Что обо мне говорят
+      .testimonials__carousel-controls
+        CarouselControls(@slide='changeSlide')
+    .testimonials__carousel
+      Swiper(ref='testimonials' :options="swiperOptions" class='swiper')
+        SwiperSlide(v-for="testimonial in testimonials" :key='testimonial.id' )
+          figure.testimonial.testimonial--dark
+            blockquote.blockquote.testimonial__blockquote {{ testimonial.quote }}
+            .testimonial__author-box
+              figure.testimonial__author-figure
+                img.testimonial__author-img(:src="testimonial.pic")
+              figcaption.testimonial__author-about
+                .testimonial__author-name {{testimonial.author}}
+                .testimonial__author-desc {{testimonial.rank}}
+        
+script(type='text/x-template' id='t-carousel-controls')
+  .carousel__controls
+    .carousel__control.carousel__control-prev(@click='$emit("slide", `prev`)')
+      .carousel__control-icon
+        .icon.icon-chevron-left
+    .carousel__control.carousel__control-next(@click='$emit("slide",`next`)')
+      .carousel__control-icon
+        .icon.icon-chevron-right.carousel__control-icon            
