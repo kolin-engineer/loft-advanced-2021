@@ -1,0 +1,24 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  &__main {
+    $bg-img: url("../images/content/bg-admin.jpg") center center / cover;
+    $bg-fallback: $admin-bg-color;
+    background: $bg-fallback $bg-img;
+    flex: 1;
+  }
+  &__title-wrap {
+    padding: 50px 0;
+    display: flex;
+  }
+  &__title {
+    margin-right: 54px;
+    font-size: 21px;
+    line-height: 28px;
+    font-weight: 700;
+  }
+}
+.action {
+  color: $admin-action-color;
+}

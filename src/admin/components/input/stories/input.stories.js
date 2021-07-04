@@ -9,8 +9,8 @@ export const defaultView = () => ({
   components: { appInput },
   data() {
     return {
-      title : "Текст"
-    }
+      title: "Текст",
+    };
   },
   template: `
     <app-input v-model="title" />
@@ -31,7 +31,6 @@ export const noPaddingsView = () => ({
 noPaddingsView.story = {
   name: "Без отступов",
 };
-
 
 export const labeledView = () => ({
   components: { appInput },
@@ -59,6 +58,29 @@ errorView.story = {
   name: "С ошибкой",
 };
 
+export const unitView = () => ({
+  components: { appInput },
+  template: `
+    <app-input unit='%' />
+  `,
+});
+unitView.story = {
+  name: "C единицами измерения",
+};
+export const readOnlyView = () => ({
+  components: { appInput },
+  data() {
+    return {
+      title: "Только для чтения",
+    };
+  },
+  template: `
+    <app-input readonly v-model='title' />
+  `,
+});
+readOnlyView.story = {
+  name: "Только для чтения",
+};
 
 export const typeView = () => ({
   components: { appInput },
@@ -75,4 +97,3 @@ export const typeView = () => ({
 typeView.story = {
   name: "Другой тип",
 };
-

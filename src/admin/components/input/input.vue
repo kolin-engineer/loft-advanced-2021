@@ -2,30 +2,36 @@
   <label
     class="input"
     v-if="fieldType === 'input'"
-    :class="[{'input_labeled' : !!title, 'no-side-paddings' : noSidePaddings}, iconClass, {'error' : !!errorMessage}]"
+    :class="[
+      { input_labeled: !!title, 'no-side-paddings': noSidePaddings },
+      iconClass,
+      { error: !!errorMessage },
+    ]"
   >
-    <div class="title" v-if="title">{{title}}</div>
+    <div class="title" v-if="title">{{ title }}</div>
     <input
-      class="input__elem field__elem"
+      :class="{ readonly: readonly, input__elem: true, field__elem: true }"
       v-bind="$attrs"
       :value="value"
       @input="$emit('input', $event.target.value)"
+      :readonly="readonly"
     />
     <div class="input__error-tooltip">
       <tooltip :text="errorMessage"></tooltip>
     </div>
+    <span class="unit" v-if="unit">{{ unit }}</span>
   </label>
   <label
     class="textarea"
     v-else-if="fieldType === 'textarea'"
     v-bind="$attrs"
-    :class="{'error': !!errorMessage}"
+    :class="{ error: !!errorMessage }"
   >
-    <div class="title" v-if="title">{{title}}</div>
+    <div class="title" v-if="title">{{ title }}</div>
     <textarea
       class="textarea__elem field__elem"
       :value="value"
-      :class="{'error' : !!errorMessage}"
+      :class="{ error: !!errorMessage }"
       @input="$emit('input', $event.target.value)"
     ></textarea>
     <div class="input__error-tooltip">
@@ -38,35 +44,43 @@
 export default {
   inheritAttrs: false,
   props: {
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
+    unit: {
+      type: String,
+      default: "",
+    },
     title: {
       type: String,
-      default: ""
+      default: "",
     },
     errorMessage: {
       type: String,
-      default: ""
+      default: "",
     },
     noSidePaddings: Boolean,
     fieldType: {
       type: String,
-      default: "input"
+      default: "input",
     },
     value: String | Number,
     icon: {
       type: String,
       default: "",
-      validator: value => ["", "user", "key"].includes(value)
-    }
+      validator: (value) => ["", "user", "key"].includes(value),
+    },
   },
   computed: {
     iconClass() {
       const iconName = this.icon;
       return iconName.length ? ` input_iconed input_icon-${iconName}` : "";
-    }
+    },
   },
   components: {
-    tooltip: () => import("components/tooltip")
-  }
+    tooltip: () => import("components/tooltip"),
+  },
 };
 </script>
 
