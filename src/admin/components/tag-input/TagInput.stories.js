@@ -9,8 +9,16 @@ export const defaultView = () => ({
   components: {
     TagInput,
   },
+  data() {
+    return {
+      tags: `html5,css3,git`,
+    };
+  },
   template: `
-    <TagInput />
+    <div>
+    <pre>{{ tags }}</pre>
+    <TagInput v-model="tags"/>
+    </div>
   `,
 });
 
