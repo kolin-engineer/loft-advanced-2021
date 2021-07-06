@@ -1,7 +1,7 @@
 <template lang="pug">
 form.form(@submit.prevent :class='{"blocked" : blocked}')
-  BaseInput(v-model='newSkill.tech' placeholder='Новый навык').form__tech
-  BaseInput(v-model='newSkill.depth').form__depth
+  BaseInput(v-model='newSkill.tech' :error-message="error" placeholder='Новый навык').form__tech
+  BaseInput(v-model='newSkill.depth' type="number" min=0 max=100).form__depth
   BaseButton(type='iconed' :size='4' title='' @click='addSkill').form__action
 </template>
 <script>
@@ -24,10 +24,16 @@ export default {
         tech: "",
         depth: 100,
       },
+      error: "",
     };
   },
   methods: {
     addSkill() {
+      this.error = "";
+      if (this.newSkill.tech === "") {
+        this.error = "Укажите навык";
+        return;
+      }
       this.$emit("add-skill", this.newSkill);
       this.newSkill = {
         tech: "",
