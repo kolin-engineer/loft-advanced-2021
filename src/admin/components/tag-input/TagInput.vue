@@ -8,7 +8,7 @@
         BaseTag(
           v-for="(tag, index) in tagsArr"
           :title='tag'
-          :key="tag + index" 
+          :key="tag + index"
           @remove='removeTag'
           )
 
@@ -29,6 +29,7 @@ export default {
       tags: "",
     };
   },
+
   computed: {
     tagsArr() {
       let tagsArr = [];

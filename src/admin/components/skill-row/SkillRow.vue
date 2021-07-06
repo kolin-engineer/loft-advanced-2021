@@ -1,6 +1,6 @@
 <template lang="pug">
 .skill-row
-  BaseInput(:readonly='readonly' noSidePaddings v-model.trim="currentSkill.tech").tech
+  BaseInput(:readonly='readonly' :error-message="error" noSidePaddings v-model.trim="currentSkill.tech").tech
   BaseInput(:readonly='readonly' v-model.number='currentSkill.depth' unit='%' @dblclick='editMode').depth
   .actions
     BaseIcon(symbol='pencil' grayscale v-if='readonly' @click='editMode')
@@ -32,6 +32,7 @@ export default {
     return {
       readonly: true,
       currentSkill: {},
+      error: "",
     };
   },
   methods: {
@@ -52,6 +53,11 @@ export default {
       this.$emit("remove-skill", this.currentSkill.id);
     },
     updateSkill() {
+      this.error = "";
+      if (this.currentSkill.tech === "") {
+        this.error = "Введите навык";
+        return;
+      }
       this.$emit("update-skill", this.currentSkill);
       this._toogleMode();
     },

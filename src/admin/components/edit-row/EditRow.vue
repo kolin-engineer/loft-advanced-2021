@@ -1,7 +1,7 @@
 <template lang="pug">
 form.edit-row(@submit.prevent)
   .title
-    BaseInput(noSidePaddings v-model.trim='currentTitle' :readonly="isReadOnlyMode" placeholder='Название новой группы')
+    BaseInput(noSidePaddings :error-message="error" v-model.trim='currentTitle' :readonly="isReadOnlyMode" placeholder='Название новой группы')
   .actions
     BaseIcon(symbol='pencil'  @click="updateTitle" v-if="isReadOnlyMode" grayscale).action
     BaseIcon(symbol='tick'    @click="approve"     v-if="!isReadOnlyMode").action
@@ -32,6 +32,7 @@ export default {
     return {
       isReadOnlyMode: this.readonly,
       currentTitle: this.title,
+      error: "",
     };
   },
   methods: {
@@ -47,6 +48,11 @@ export default {
       this._toogleMode();
     },
     approve() {
+      this.error = "";
+      if (this.currentTitle === "") {
+        this.error = "Введите название группы";
+        return;
+      }
       if (this.currentTitle !== this.title) {
         this.$emit("approve", this.currentTitle);
       }
