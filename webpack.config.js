@@ -105,6 +105,8 @@ module.exports = (env, argv) => {
         components: path.resolve(__dirname, "./src/admin/components"),
         styles: path.resolve(__dirname, "./src/styles"),
         data: path.resolve(__dirname, "./src/data"),
+        "@": path.resolve(__dirname, "./src/"),
+        views: path.resolve(__dirname, "./src/admin/views"),
       },
       extensions: ["*", ".js", ".vue", ".json"],
     },

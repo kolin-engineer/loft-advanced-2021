@@ -1,14 +1,16 @@
 <template lang="pug">
 .nav.container
-  a.nav__link(href='' v-for='link in navs' :key='link' :class='{active: link === activeLink}') {{ link }}
-
+  router-link.nav__link(:to="{name: 'About'}") Обо мне
+  router-link.nav__link(:to="{name: 'Cases'}") Мои работы
+  router-link.nav__link(:to="{name: 'Testimonials'}") Отзывы
 </template>
 
 <script>
+import { routes } from "@/router";
+
 export default {
-  props: {
-    navs: Array,
-    activeLink: String,
+  created() {
+    this.navs = routes.filter((route) => route.path !== "/");
   },
 };
 </script>
@@ -22,12 +24,16 @@ export default {
     line-height: 22px;
     padding: 27px;
     border-bottom: 3px solid transparent;
-    &:hover,
-    &.active {
+    &:hover {
       color: $admin-action-color;
       font-weight: 600;
       border-bottom-color: $admin-action-color;
     }
   }
+}
+.router-link-exact-active {
+  color: $admin-action-color;
+  font-weight: 600;
+  border-bottom-color: $admin-action-color;
 }
 </style>
