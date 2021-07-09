@@ -1,13 +1,12 @@
 <template lang="pug">
-  .app
+  router-view(v-if='$route.name === "Login"')
+  .app(v-else)
     headline(title='Панель администратора')
       user(mode='light' :user='user')
-    PageNav(:navs='navs' :activeLink="navs[0]")
+    PageNav
     main.app__main
       .container
         router-view
-        
-           
 </template>
 
 <script>
@@ -29,8 +28,10 @@ export default {
         name: "Кирилович Николай",
         img: require("../images/content/kolin.jpg").default,
       },
-      navs: ["Обо мне", "Cases", "Отзывы"],
     };
+  },
+  mounted() {
+    console.log(this.$route);
   },
 };
 </script>

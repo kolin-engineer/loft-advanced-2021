@@ -3,10 +3,12 @@ import Vue from "vue";
 import About from "../admin/views/About.vue";
 import Cases from "views/Cases.vue";
 import Testimonials from "views/Testimonials.vue";
+import Login from "views/Login.vue";
 Vue.use(VueRouter);
 
 export const routes = [
   { path: "/", redirect: { name: "About" }, name: "Admin" },
+  { path: "/login", component: Login, name: "Login" },
   { path: "/about", component: About, name: "About" },
   { path: "/cases", component: Cases, name: "Cases" },
   { path: "/testimonials", component: Testimonials, name: "Testimonials" },
