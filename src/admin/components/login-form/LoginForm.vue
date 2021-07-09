@@ -57,7 +57,7 @@ export default {
         value: {
           required: helpers.withMessage("Поле не может быть пустым", required),
           minLength: helpers.withMessage(
-            "Пароль должен содержать больше 3 символов",
+            "Пароль должен содержать не менее 3 символов",
             minLength(3)
           ),
         },
@@ -103,12 +103,13 @@ export default {
           .then((res) => {
             this.token = res.data.token;
             this.resetForm();
-            this.$router.push({ name: "About" });
+            this.$router.replace({ name: "About" });
             window.localStorage.setItem("token", this.token);
+            axios.defaults.headers["Authorization"] = `Bearer ${this.token}`;
           })
           .catch((err) => {
-            this.login.error = "Пользователь не существует";
-            this.pass.error = "Пользователь не существует";
+            this.login.error = err.response.data.error;
+            this.pass.error = err.response.data.error;
           });
       }
     },

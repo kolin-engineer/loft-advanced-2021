@@ -1,0 +1,6 @@
+TODO
+[] Add 404 view and router
+
+DONE
+[✔] Add token to headers by default
+[✔] Router replace after login
