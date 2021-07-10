@@ -11,7 +11,7 @@ div
         v-if='showBlankSkillsGroup'
         isBlank
         @create-group='createGroup'
-        @delete-group='deleteGroup'
+        @delete-group='deleteGroup' 
       )
       SkillsGroup(
         class='skill-group'
@@ -42,7 +42,6 @@ export default {
       this.showBlankSkillsGroup = false;
     },
     createGroup(title) {
-      console.log("Создаю группу");
       this.$store.dispatch("group/create", { title });
       this._hideBlankForm();
     },

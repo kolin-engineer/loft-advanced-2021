@@ -2,6 +2,7 @@ TODO
 [] Add 404 view and router
 [] Enhance axios with default settings(baseURL, headers)
 [] Fix console error axios/server
+[] Fixed bugs
 
 [] Skills 
   [] CRUD skill (API)
@@ -9,12 +10,12 @@ TODO
   [] Display all each skill list within target group (UX)
  
 DONE
+
+COMMITED
 [✔] Block button while request a server
 [✔] Groups
   [✔] CRUD Group (API)
   [✔] CRUD Group (UX)
   [✔] Display all groups (aka categories) (UX)
-
-COMMITED
 [✔] Add token to headers by default
 [✔] Router replace after login

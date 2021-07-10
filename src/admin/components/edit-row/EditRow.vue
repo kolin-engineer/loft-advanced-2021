@@ -7,6 +7,7 @@ form.edit-row(@submit.prevent)
       :error-message="error"
       :readonly="isReadOnlyMode"
       placeholder='Название новой группы'
+      @keydown.native.enter="approve"
       )
   .actions
     BaseIcon(symbol='pencil'  @click="_toogleMode" v-if="isReadOnlyMode" grayscale).action
@@ -41,6 +42,11 @@ export default {
       error: "",
     };
   },
+  watch: {
+    currentTitle() {
+      this.error = "";
+    },
+  },
   methods: {
     _toogleMode() {
       this.isReadOnlyMode = !this.isReadOnlyMode;
@@ -51,6 +57,10 @@ export default {
     },
     approve() {
       this.error = "";
+      if (this.currentTitle === "") {
+        this.error = "Поле не может быть пустым";
+        return;
+      }
       this.$emit("approve", this.currentTitle);
       this._toogleMode();
     },

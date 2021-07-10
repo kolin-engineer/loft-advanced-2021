@@ -20,6 +20,7 @@ const actions = {
       console.warn(err);
     }
   },
+
   async update({ dispatch }, { id, title }) {
     try {
       const res = await this.$axios.post(`/categories/${id}`, { title });
