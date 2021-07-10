@@ -7,7 +7,7 @@ BaseCard(simple).form-wrap
     //- errorMessage="Ошибка"
     BaseInput.login-form__pass(icon="key" title='Пароль' :errorMessage="pass.error"  v-model.trim="pass.value" type='password') 
     .login-form__submit
-      BaseButton(title='Отправить') 
+      BaseButton(title='Отправить' :disabled='disableSubmit') 
     .login-form__errors
 
       
@@ -19,7 +19,7 @@ import BaseIcon from "components/icon";
 import BaseButton from "components/button";
 import useValidate from "@vuelidate/core";
 import { required, minLength, helpers } from "@vuelidate/validators";
-import axios from "axios";
+import $axios from "../../requests";
 
 const mixinField = {
   value: "",
@@ -38,6 +38,7 @@ export default {
     BaseButton,
   },
   data: () => ({
+    disableSubmit: false,
     login: {
       ...mixinField,
     },
@@ -98,18 +99,22 @@ export default {
       };
 
       if (this.isValid()) {
-        axios
+        this.disableSubmit = true;
+        $axios
           .post("/login", formData)
           .then((res) => {
             this.token = res.data.token;
             this.resetForm();
             this.$router.replace({ name: "About" });
             window.localStorage.setItem("token", this.token);
-            axios.defaults.headers["Authorization"] = `Bearer ${this.token}`;
+            $axios.defaults.headers["Authorization"] = `Bearer ${this.token}`;
           })
           .catch((err) => {
             this.login.error = err.response.data.error;
             this.pass.error = err.response.data.error;
+          })
+          .finally(() => {
+            this.disableSubmit = false;
           });
       }
     },

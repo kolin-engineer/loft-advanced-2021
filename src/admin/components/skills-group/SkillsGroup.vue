@@ -2,18 +2,18 @@
 BaseCard.group
   template(slot='title')
     EditRow(
-      :title='currentGroupName'
+      :title='group.name'
       :readonly='!isBlank'
-      @approve='updateTitle'
-      @remove="$emit('remove', $event)"
+      @approve='approve'
+      @remove='$emit("remove-group", group.id)'
     )
   template(slot='content')
     .content(v-if="!isBlank")
       .skills-list
           SkillRow(
-            v-for='skill in currentSkills'
+            v-for='skill in group.skills'
             :key='skill.id'
-            :skill='skill'
+            :skill='skill.name'
             @update-skill='updateSkill'
             @remove-skill='removeSkill'
             ) 
@@ -36,20 +36,29 @@ export default {
     AddSkill: () => import("../add-skill"),
   },
   props: {
-    groupName: String,
-    groupSkills: Array,
+    group: {
+      type: Object,
+      default: () => ({ name: "", id: "", skills: "" }),
+      require: false,
+    },
     isBlank: Boolean,
   },
   data() {
     return {
-      newGroupName: "",
-      group: "",
       currentSkills: this.groupSkills,
-      currentGroupName: this.groupName,
+      title: this.groupName,
     };
   },
 
   methods: {
+    approve(newTitle) {
+      if (this.isBlank) {
+        this.$emit("create-group", newTitle);
+        return;
+      }
+
+      this.$emit("update-group", { id: this.group.id, title: newTitle });
+    },
     removeSkill(id) {
       this.currentSkills = this.currentSkills.filter((el) => el.id !== id);
     },
@@ -64,12 +73,6 @@ export default {
         skill: {
           ...skill,
         },
-        groupName: this.currentGroupName,
-      });
-    },
-    updateTitle() {
-      this.$emit("update-group-name", {
-        id: this.groupName,
         groupName: this.currentGroupName,
       });
     },

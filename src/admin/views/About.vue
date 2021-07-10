@@ -3,17 +3,23 @@ div
   PageTitle(title='Блок "Обо мне"')
     BaseButton.action(type='iconed' @click="showBlankSkillsGroup=true" v-if='!showBlankSkillsGroup' title='Добавить в группу') 
   .app__content
+    //- pre {{ categories }}
     .skills-grid
-      SkillsGroup.skill-group(
+      //- Blank
+      SkillsGroup(
+        class='skill-group'
         v-if='showBlankSkillsGroup'
         isBlank
-        @remove='showBlankSkillsGroup=false'
+        @create-group='createGroup'
+        @delete-group='deleteGroup'
       )
-      SkillsGroup.skill-group(
-        v-for='(skills, group) in skillsJSON'
-        :key='group'
-        :groupName='group'
-        :groupSkills="skills")
+      SkillsGroup(
+        class='skill-group'
+        v-for='group in groups'
+        :key="group.id"
+        :group="group"
+        @update-group='updateGroup'
+        @remove-group='deleteGroup')
 </template>
 
 <script>
@@ -31,8 +37,43 @@ export default {
     skillsJSON: {},
     showBlankSkillsGroup: false,
   }),
-  created() {
-    this.skillsJSON = require("data/skills.json");
+  methods: {
+    _hideBlankForm() {
+      this.showBlankSkillsGroup = false;
+    },
+    createGroup(title) {
+      console.log("Создаю группу");
+      this.$store.dispatch("group/create", { title });
+      this._hideBlankForm();
+    },
+    updateGroup({ id, title }) {
+      console.log("updating group");
+      this.$store.dispatch("group/update", { id, title });
+    },
+    deleteGroup(id) {
+      if (id !== "") {
+        console.log("Going to remove group with id: ", id);
+        this.$store.dispatch("group/delete", { id });
+        return;
+      }
+      this._hideBlankForm();
+    },
+  },
+  computed: {
+    groups() {
+      // [{groupId<String>, groupName<String>, groupSkills<Array>:[{skillId:<String>, skillName:<String>, groupId:<String>},]}]
+      const groupsOnly = this.$store.state.group.all;
+      const skillsOnly = [];
+      return groupsOnly.map((group) => ({
+        id: group.id,
+        name: group.category,
+        skills: skillsOnly,
+      }));
+    },
+  },
+  async created() {
+    await this.$store.dispatch("group/fetch");
+    console.log("Список всех категорий", this.$store.state.group.all);
   },
 };
 </script>

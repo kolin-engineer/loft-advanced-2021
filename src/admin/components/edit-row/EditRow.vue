@@ -1,11 +1,17 @@
 <template lang="pug">
 form.edit-row(@submit.prevent)
   .title
-    BaseInput(noSidePaddings :error-message="error" v-model.trim='currentTitle' :readonly="isReadOnlyMode" placeholder='Название новой группы')
+    BaseInput(
+      v-model.trim='currentTitle'
+      noSidePaddings
+      :error-message="error"
+      :readonly="isReadOnlyMode"
+      placeholder='Название новой группы'
+      )
   .actions
-    BaseIcon(symbol='pencil'  @click="updateTitle" v-if="isReadOnlyMode" grayscale).action
-    BaseIcon(symbol='tick'    @click="approve"     v-if="!isReadOnlyMode").action
-    BaseIcon(symbol='cross'   @click="$emit('remove')"      v-if="!isReadOnlyMode").action
+    BaseIcon(symbol='pencil'  @click="_toogleMode" v-if="isReadOnlyMode" grayscale).action
+    BaseIcon(symbol='tick'    @click='approve' v-if="!isReadOnlyMode").action
+    BaseIcon(symbol='cross'   @click='$emit("remove")'  v-if="!isReadOnlyMode").action
 </template>
 
 <script>
@@ -21,7 +27,7 @@ export default {
   props: {
     title: {
       type: String,
-      require: true,
+      require: false,
     },
     readonly: {
       type: Boolean,
@@ -39,23 +45,13 @@ export default {
     _toogleMode() {
       this.isReadOnlyMode = !this.isReadOnlyMode;
     },
-    updateTitle() {
-      this._toogleMode();
-      this.$emit("update-title", this.currentTitle);
-    },
     cancel() {
       this.currentTitle = this.title;
       this._toogleMode();
     },
     approve() {
       this.error = "";
-      if (this.currentTitle === "") {
-        this.error = "Введите название группы";
-        return;
-      }
-      if (this.currentTitle !== this.title) {
-        this.$emit("approve", this.currentTitle);
-      }
+      this.$emit("approve", this.currentTitle);
       this._toogleMode();
     },
   },

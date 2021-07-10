@@ -1,15 +1,14 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "../router";
-import store from "../store";
+import store from "../store/store";
 import VueCompositionAPI from "@vue/composition-api";
-import axios from "axios";
-
-axios.defaults.baseURL = "https://webdev-api.loftschool.com/";
+import $axios from "../admin/requests";
 
 Vue.use(VueCompositionAPI);
-Vue.use(axios);
 Vue.config.productionTip = false;
+
+store.$axios = $axios;
 
 new Vue({
   el: "#app-root",
