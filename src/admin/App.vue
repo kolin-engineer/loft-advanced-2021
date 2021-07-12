@@ -1,34 +1,36 @@
 <template lang="pug">
-  router-view(v-if='$route.name === "Login"')
-  .app(v-else)
-    headline(title='Панель администратора')
-      user(mode='light' :user='user')
-    PageNav
-    main.app__main
-      .container
-        router-view
+.app
+  router-view(name='login')
+  router-view(name='header')
+  main.app__main
+    .container
+      router-view(name="default")
+  .notifications(:class="{active: notification.isShown}")
+    BaseNotification(:text='notification.text', :type='notification.type' @click="closeNotification")
+
 </template>
 
 <script>
-import headline from "./components/headline";
-import user from "./components/user";
-import PageNav from "./components/page-nav";
 import BaseButton from "./components/button";
-
+import BaseNotification from "./components/notification";
+import { mapState } from "vuex";
 export default {
   components: {
-    headline,
-    user,
-    PageNav,
     BaseButton,
+    BaseNotification,
   },
   data() {
-    return {
-      user: {
-        name: "Кирилович Николай",
-        img: require("../images/content/kolin.jpg").default,
-      },
-    };
+    return {};
+  },
+  computed: {
+    ...mapState({
+      notification: (state) => state.notification.notification,
+    }),
+  },
+  methods: {
+    closeNotification() {
+      this.$store.dispatch("notification/hide");
+    },
   },
 };
 </script>

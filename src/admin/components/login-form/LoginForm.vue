@@ -109,9 +109,13 @@ export default {
             window.localStorage.setItem("token", this.token);
             $axios.defaults.headers["Authorization"] = `Bearer ${this.token}`;
           })
-          .catch((err) => {
-            this.login.error = err.response.data.error;
-            this.pass.error = err.response.data.error;
+          .catch((error) => {
+            // this.login.error = error.response.data.error;
+            // this.pass.error = error.response.data.error;
+            this.$store.dispatch("notification/show", {
+              text: error.response.data.error,
+              type: "error",
+            });
           })
           .finally(() => {
             this.disableSubmit = false;

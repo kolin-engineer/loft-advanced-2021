@@ -48,7 +48,11 @@ const actions = {
     try {
       const res = await this.$axios.post("/categories", { title });
       commit("createGroup", { ...res.data, skills: [] });
-      // dispatch("fetch");
+      dispatch(
+        "notification/show",
+        { text: `Группа [${title}] добавлена` },
+        { root: true }
+      );
     } catch (err) {
       console.warn(err);
     }
@@ -56,14 +60,24 @@ const actions = {
   async update({ dispatch, commit }, { id, title }) {
     try {
       const res = await this.$axios.post(`/categories/${id}`, { title });
+      dispatch(
+        "notification/show",
+        { text: `Группа [${title}] обновлена` },
+        { root: true }
+      );
     } catch (err) {
       console.warn(err);
     }
   },
-  async delete({ commit }, { id }) {
+  async delete({ commit, dispatch }, { id }) {
     try {
       const res = await this.$axios.delete(`/categories/${id}`);
       commit("deleteGroup", id);
+      dispatch(
+        "notification/show",
+        { text: `Группа удалена`, type: "warning" },
+        { root: true }
+      );
     } catch (err) {
       console.warn(err, err.response);
     }

@@ -2,13 +2,19 @@ TODO
 [] Add 404 view and router
 [] Check wether user is Authenticated
 
+[✔] Rewrite router-view
+[✔] Notification
+  [✔] Create and implent new vuex module
+     Fields: style, text, action(close), state
+  [✔] Create UX for Notification
+    
 
 COMMITED
 [✔] Skills 
   [✔] CRUD skill (API)
     [✔] C
       [✔] Create on server
-      [] Mutate state with created skills
+      [✔] Mutate state with created skills
     [✔] R
     [✔] U
       [✔] Update skill on server and mutate current group.state;
