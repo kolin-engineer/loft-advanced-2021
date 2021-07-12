@@ -8,9 +8,10 @@ const actions = {
   create: async function({ commit }, skill) {
     try {
       const res = await this.$axios.post("/skills", skill);
-      commit("group/createSkill", skill, { root: true });
+      const createdSkill = res.data;
+      commit("group/createSkill", createdSkill, { root: true });
     } catch (error) {
-      console.warn(error);
+      console.warn(error, error.response);
     }
   },
   update: async function({ commit }, skill) {
@@ -19,7 +20,7 @@ const actions = {
       commit("group/updateSkill", skill, { root: true });
       // Mutate via rootStore
     } catch (error) {
-      console.warn(error);
+      console.warn(error, error.response);
     }
   },
   delete: async function({ commit }, skill) {
@@ -27,7 +28,7 @@ const actions = {
       const response = await this.$axios.delete(`/skills/${skill.id}`);
       commit("group/deleteSkill", skill, { root: true });
     } catch (error) {
-      console.warn(error);
+      console.warn(error, error.response);
     }
   },
 };

@@ -3,6 +3,12 @@ const state = () => ({
 });
 
 const mutations = {
+  createGroup(state, group) {
+    state.all.unshift(group);
+  },
+  deleteGroup(state, id) {
+    state.all = state.all.filter((group) => group.id !== id);
+  },
   createSkill(state, skill) {
     const mapGroup = (group) => {
       if (group.id === skill.category) {
@@ -38,27 +44,28 @@ const mutations = {
 };
 
 const actions = {
-  async create({ dispatch }, { title }) {
+  async create({ commit, dispatch }, { title }) {
     try {
       const res = await this.$axios.post("/categories", { title });
-      dispatch("fetch");
+      commit("createGroup", { ...res.data, skills: [] });
+      // dispatch("fetch");
     } catch (err) {
       console.warn(err);
     }
   },
-  async update({ dispatch }, { id, title }) {
+  async update({ dispatch, commit }, { id, title }) {
     try {
       const res = await this.$axios.post(`/categories/${id}`, { title });
     } catch (err) {
       console.warn(err);
     }
   },
-  async delete({ dispatch }, { id }) {
+  async delete({ commit }, { id }) {
     try {
       const res = await this.$axios.delete(`/categories/${id}`);
-      dispatch("fetch");
+      commit("deleteGroup", id);
     } catch (err) {
-      console.warn(err);
+      console.warn(err, err.response);
     }
   },
   async fetch({ commit }) {

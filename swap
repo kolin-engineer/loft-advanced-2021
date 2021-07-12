@@ -2,6 +2,8 @@ TODO
 [] Add 404 view and router
 [] Check wether user is Authenticated
 
+
+COMMITED
 [✔] Skills 
   [✔] CRUD skill (API)
     [✔] C
@@ -25,8 +27,6 @@ TODO
       [✔] @trash -> delete skill
 [✔] Display each skill list in apropriate group (UX)
 [✔] Enhance axios with default settings(baseURL, headers)
-
-COMMITED
 [✔] Block button while request a server
 [✔] Groups
   [✔] CRUD Group (API)
