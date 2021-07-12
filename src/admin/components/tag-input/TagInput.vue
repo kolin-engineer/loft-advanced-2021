@@ -2,13 +2,13 @@
 .tag-input
   BaseCard
     template(slot='title')
-      BaseInput(title='Добавление тега' v-model='tags' @change="$emit(`change`, tags)")
+      BaseInput(title='Добавление тега' v-model='tags')
     template(slot='content')
       .tag-input__list
         BaseTag(
           v-for="(tag, index) in tagsArr"
           :title='tag'
-          :key="tag + index"
+          :key="tag + index" 
           @remove='removeTag'
           )
 
@@ -26,18 +26,12 @@ export default {
   },
   data() {
     return {
-      tags: this.propTags,
+      tags: "",
     };
   },
-  props: {
-    propTags: {
-      type: String,
-      default: "",
-    },
-  },
   model: {
-    prop: "propTags",
-    event: "change",
+    prop: "tags",
+    event,
   },
   computed: {
     tagsArr() {
@@ -51,7 +45,6 @@ export default {
   methods: {
     removeTag(tag) {
       this.tags = this.tagsArr.filter((el) => el !== tag).join(",");
-      this.$emit("change", this.tags);
     },
   },
 };

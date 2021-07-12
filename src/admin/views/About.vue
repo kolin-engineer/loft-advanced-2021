@@ -19,7 +19,11 @@ div
         :key="group.id"
         :group="group"
         @update-group='updateGroup'
-        @remove-group='deleteGroup')
+        @delete-group='deleteGroup'
+        @create-skill='createSkill'
+        @update-skill='updateSkill'
+        @delete-skill='deleteSkill'
+        )
 </template>
 
 <script>
@@ -46,33 +50,33 @@ export default {
       this._hideBlankForm();
     },
     updateGroup({ id, title }) {
-      console.log("updating group");
       this.$store.dispatch("group/update", { id, title });
     },
     deleteGroup(id) {
       if (id !== "") {
-        console.log("Going to remove group with id: ", id);
         this.$store.dispatch("group/delete", { id });
         return;
       }
       this._hideBlankForm();
     },
+    createSkill(skill) {
+      this.$store.dispatch("skill/create", skill);
+    },
+    updateSkill(skill) {
+      this.$store.dispatch("skill/update", skill);
+    },
+    deleteSkill(skill) {
+      this.$store.dispatch("skill/delete", skill);
+    },
   },
   computed: {
     groups() {
-      // [{groupId<String>, groupName<String>, groupSkills<Array>:[{skillId:<String>, skillName:<String>, groupId:<String>},]}]
-      const groupsOnly = this.$store.state.group.all;
-      const skillsOnly = [];
-      return groupsOnly.map((group) => ({
-        id: group.id,
-        name: group.category,
-        skills: skillsOnly,
-      }));
+      return this.$store.state.group.all;
     },
   },
   async created() {
     await this.$store.dispatch("group/fetch");
-    console.log("Список всех категорий", this.$store.state.group.all);
+    await this.$store.dispatch("auth/fetchUser");
   },
 };
 </script>

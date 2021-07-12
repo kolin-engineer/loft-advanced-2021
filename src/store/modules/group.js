@@ -1,10 +1,37 @@
-import { onUpdated } from "@vue/composition-api";
-
 const state = () => ({
   all: [],
 });
 
 const mutations = {
+  createSkill(state, skill) {
+    const mapGroup = (group) => {
+      if (group.id === skill.category) {
+        group.skills.push(skill);
+      }
+      return group;
+    };
+    state.all.map(mapGroup);
+  },
+  updateSkill(state, skill) {
+    const targetGroupIndex = state.all.findIndex(
+      (group) => group.id === skill.category
+    );
+    const targetSkillIndex = state.all[targetGroupIndex].skills.findIndex(
+      (el) => el.id === skill.id
+    );
+    state.all[targetGroupIndex].skills[targetSkillIndex] = { ...skill };
+  },
+  deleteSkill(state, skill) {
+    const mapGroup = (group) => {
+      if (group.id === skill.category) {
+        group.skills = group.skills.filter(
+          (skillEl) => skillEl.id !== skill.id
+        );
+      }
+      return group;
+    };
+    state.all.map(mapGroup);
+  },
   fetch(state, payload) {
     state.all = payload.all;
   },
@@ -14,17 +41,14 @@ const actions = {
   async create({ dispatch }, { title }) {
     try {
       const res = await this.$axios.post("/categories", { title });
-      console.log(`Ответ сервера после создания`, res.data);
       dispatch("fetch");
     } catch (err) {
       console.warn(err);
     }
   },
-
   async update({ dispatch }, { id, title }) {
     try {
       const res = await this.$axios.post(`/categories/${id}`, { title });
-      console.log(res.data);
     } catch (err) {
       console.warn(err);
     }
@@ -32,7 +56,6 @@ const actions = {
   async delete({ dispatch }, { id }) {
     try {
       const res = await this.$axios.delete(`/categories/${id}`);
-      console.log(res.data);
       dispatch("fetch");
     } catch (err) {
       console.warn(err);
@@ -40,7 +63,7 @@ const actions = {
   },
   async fetch({ commit }) {
     try {
-      const res = await this.$axios.get("/categories");
+      const res = await this.$axios.get("/categories/467");
       commit("fetch", { all: res.data });
     } catch (error) {
       console.warn("Не удалось получить список всех групп\n", error);

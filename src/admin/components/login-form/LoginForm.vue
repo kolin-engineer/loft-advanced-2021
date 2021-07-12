@@ -3,9 +3,9 @@ BaseCard(simple).form-wrap
   form(@submit.prevent='onSubmit').login-form
     BaseIcon(symbol='cross' grayscale @click='$emit("close-form", $event)').login-form__close
     .login-form__title Авторизация
-    BaseInput.login-form__login(icon="user" title='Логин' :errorMessage="login.error" v-model.trim="login.value")
+    BaseInput.login-form__login(icon="user" title='Логин' :errorMessage="login.error" v-model.trim="login.value" novalidate)
     //- errorMessage="Ошибка"
-    BaseInput.login-form__pass(icon="key" title='Пароль' :errorMessage="pass.error"  v-model.trim="pass.value" type='password') 
+    BaseInput.login-form__pass(icon="key" title='Пароль' :errorMessage="pass.error"   v-model.trim="pass.value" type='password' novalidate) 
     .login-form__submit
       BaseButton(title='Отправить' :disabled='disableSubmit') 
     .login-form__errors

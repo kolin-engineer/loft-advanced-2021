@@ -2,18 +2,33 @@ const state = () => ({
   all: [],
 });
 
-const mutations = {
-  mutationHandler(state, payload) {},
-};
+const mutations = {};
 
 const actions = {
-  actionHandler({ commit }, payload) {
-    return new Promise((resolve) => {
-      request().then((response) => {
-        commit(mutationHandler, response);
-        resolve(response);
-      });
-    });
+  create: async function({ commit }, skill) {
+    try {
+      const res = await this.$axios.post("/skills", skill);
+      commit("group/createSkill", skill, { root: true });
+    } catch (error) {
+      console.warn(error);
+    }
+  },
+  update: async function({ commit }, skill) {
+    try {
+      const response = await this.$axios.post(`/skills/${skill.id}`, skill);
+      commit("group/updateSkill", skill, { root: true });
+      // Mutate via rootStore
+    } catch (error) {
+      console.warn(error);
+    }
+  },
+  delete: async function({ commit }, skill) {
+    try {
+      const response = await this.$axios.delete(`/skills/${skill.id}`);
+      commit("group/deleteSkill", skill, { root: true });
+    } catch (error) {
+      console.warn(error);
+    }
   },
 };
 

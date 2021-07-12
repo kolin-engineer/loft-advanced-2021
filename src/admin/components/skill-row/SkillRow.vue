@@ -1,17 +1,19 @@
 <template lang="pug">
-.skill-row
-  BaseInput(:readonly='readonly' :error-message="error" noSidePaddings v-model.trim="currentSkill.tech").tech
-  BaseInput(:readonly='readonly' v-model.number='currentSkill.depth' unit='%' @dblclick='editMode').depth
+.skill-row(@keydown.enter='approve')
+  BaseInput(:readonly='readonly' :error-message="techErr" noSidePaddings v-model.trim="tech").tech
+  BaseInput(:readonly='readonly' :error-message="depthErr" v-model.number='depth' unit='%' type='number').depth
   .actions
     BaseIcon(symbol='pencil' grayscale v-if='readonly' @click='editMode')
-    BaseIcon(symbol="tick" v-else @click='updateSkill')
-    BaseIcon(symbol='trash' grayscale v-if='readonly' @click="removeSkill")
-    BaseIcon(symbol='cross' v-else @click='readOnlynoSave')
+    BaseIcon(symbol="tick" v-else @click='approve')
+    BaseIcon(symbol='trash' grayscale v-if='readonly' @click=`$emit("remove", skill)` )
+    BaseIcon(symbol='cross' v-else @click='cancel')
 
 </template>
 <script>
 import BaseInput from "../input";
 import BaseIcon from "../icon";
+import { useVuelidate } from "@vuelidate/core";
+import { required, helpers, between } from "@vuelidate/validators";
 
 export default {
   name: "SkillRow",
@@ -24,22 +26,50 @@ export default {
     skill: {
       type: Object,
       require: true,
-      validator: (skill) =>
-        ["id", "tech", "depth"].every((key) => key in skill),
     },
+  },
+  setup() {
+    return { v$: useVuelidate() };
+  },
+  validations() {
+    return {
+      tech: {
+        required: helpers.withMessage("Поле не может быть пустым", required),
+      },
+      depth: {
+        required: helpers.withMessage("Поле не может быть пустым", required),
+        between: helpers.withMessage("Некоректное значение", between(0, 100)),
+      },
+    };
   },
   data() {
     return {
       readonly: true,
-      currentSkill: {},
-      error: "",
+      tech: this.skill.title,
+      depth: this.skill.percent,
+      techErr: "",
+      depthErr: "",
     };
   },
   methods: {
     _toogleMode() {
       this.readonly = !this.readonly;
     },
-
+    _isValidForm() {
+      this.v$.$touch();
+      this.techErr = this.v$.tech.$error
+        ? this.v$.tech.$errors[0].$message
+        : "";
+      this.depthErr = this.v$.depth.$error
+        ? this.v$.depth.$errors[0].$message
+        : "";
+      return !this.v$.$invalid;
+    },
+    _isChanged() {
+      return (
+        this.skill.title !== this.tech || this.skill.percent !== this.depth
+      );
+    },
     editMode() {
       this._toogleMode();
     },
@@ -49,23 +79,26 @@ export default {
         ...this.skill,
       };
     },
-    removeSkill() {
-      this.$emit("remove-skill", this.currentSkill.id);
-    },
-    updateSkill() {
-      this.error = "";
-      if (this.currentSkill.tech === "") {
-        this.error = "Введите навык";
+
+    approve() {
+      if (!this._isChanged()) {
+        this._toogleMode();
         return;
       }
-      this.$emit("update-skill", this.currentSkill);
+      if (this._isValidForm()) {
+        this.$emit("update-skill", {
+          ...this.skill,
+          title: this.tech,
+          percent: this.depth,
+        });
+        this._toogleMode();
+      }
+    },
+    cancel() {
+      this.tech = this.skill.title;
+      this.depth = this.skill.percent;
       this._toogleMode();
     },
-  },
-  created() {
-    this.currentSkill = {
-      ...this.skill,
-    };
   },
 };
 </script>

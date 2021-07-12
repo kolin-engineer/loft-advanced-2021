@@ -1,0 +1,36 @@
+TODO
+[] Add 404 view and router
+[] Check wether user is Authenticated
+
+[✔] Skills 
+  [✔] CRUD skill (API)
+    [✔] C
+      [✔] Create on server
+      [] Mutate state with created skills
+    [✔] R
+    [✔] U
+      [✔] Update skill on server and mutate current group.state;
+      [✔] Mutatate for updated skill in group.js;
+    [✔] D
+      [✔] Delete skill on server;
+      [✔] Mutate state with deleted skill
+  [✔] CRUD Skill (UX)
+    [✔] C 
+    [✔] U Edit skill
+      [✔] @pencil -> Edit Mode;
+      [✔] @tick -> Approve <if> isChanged;
+      [✔] @keydown.enter -> Approve;
+      [✔] @cross -> Discard changes;
+    [✔] D
+      [✔] @trash -> delete skill
+[✔] Display each skill list in apropriate group (UX)
+[✔] Enhance axios with default settings(baseURL, headers)
+
+COMMITED
+[✔] Block button while request a server
+[✔] Groups
+  [✔] CRUD Group (API)
+  [✔] CRUD Group (UX)
+  [✔] Display all groups (aka categories) (UX)
+[✔] Add token to headers by default
+[✔] Router replace after login

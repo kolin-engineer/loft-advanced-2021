@@ -8,10 +8,6 @@
 </template>
 
 <script>
-import BaseCard from "components/card";
-import BaseInput from "components/input";
-import BaseIcon from "components/icon";
-import BaseButton from "components/button";
 import LoginForm from "components/login-form";
 
 export default {

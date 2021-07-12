@@ -5,7 +5,7 @@
       slot(name='default')
     .title {{ title }}
     .right.btns
-      button.btn(type='button') Выйти
+      button.btn(type='button' @click='logout') Выйти
 
 </template>
 
@@ -13,6 +13,11 @@
 export default {
   props: {
     title: String,
+  },
+  methods: {
+    logout() {
+      this.$router.push({ name: "Login" });
+    },
   },
 };
 </script>

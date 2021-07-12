@@ -2,10 +2,10 @@
 BaseCard.group
   template(slot='title')
     EditRow(
-      :title='group.name'
+      :title='group.category'
       :readonly='!isBlank'
       @approve='approve'
-      @remove='$emit("remove-group", group.id)'
+      @remove='$emit("delete-group", group.id)'
     )
   template(slot='content')
     .content(v-if="!isBlank")
@@ -13,12 +13,13 @@ BaseCard.group
           SkillRow(
             v-for='skill in group.skills'
             :key='skill.id'
-            :skill='skill.name'
+            :skill='skill'
             @update-skill='updateSkill'
-            @remove-skill='removeSkill'
+            @remove='deleteSkill'
             ) 
     .footer
-      AddSkill(@add-skill='addSkill' :blocked="isBlank")
+      AddSkill(
+        @add='createSkill' :blocked="isBlank")
       
 </template>
 
@@ -38,7 +39,7 @@ export default {
   props: {
     group: {
       type: Object,
-      default: () => ({ name: "", id: "", skills: "" }),
+      default: () => ({ category: "", id: "", skills: "" }),
       require: false,
     },
     isBlank: Boolean,
@@ -51,6 +52,14 @@ export default {
   },
 
   methods: {
+    createSkill(skill) {
+      const newSkill = {
+        category: this.group.id,
+        title: skill.tech,
+        percent: skill.depth,
+      };
+      this.$emit("create-skill", newSkill);
+    },
     approve(newTitle) {
       if (this.isBlank) {
         this.$emit("create-group", newTitle);
@@ -59,22 +68,11 @@ export default {
 
       this.$emit("update-group", { id: this.group.id, title: newTitle });
     },
-    removeSkill(id) {
-      this.currentSkills = this.currentSkills.filter((el) => el.id !== id);
-    },
-    addSkill(skill) {
-      this.currentSkills.push({
-        ...skill,
-        id: Date.now(),
-      });
+    deleteSkill(skill) {
+      this.$emit("delete-skill", skill);
     },
     updateSkill(skill) {
-      this.$emit("update-skill", {
-        skill: {
-          ...skill,
-        },
-        groupName: this.currentGroupName,
-      });
+      this.$emit("update-skill", skill);
     },
   },
 };
