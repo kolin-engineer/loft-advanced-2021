@@ -2,14 +2,14 @@ TODO
 [] Add 404 view and router
 [] Check wether user is Authenticated
 
+    
+
+COMMITED
 [✔] Rewrite router-view
 [✔] Notification
   [✔] Create and implent new vuex module
      Fields: style, text, action(close), state
   [✔] Create UX for Notification
-    
-
-COMMITED
 [✔] Skills 
   [✔] CRUD skill (API)
     [✔] C
