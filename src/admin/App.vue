@@ -32,6 +32,9 @@ export default {
       this.$store.dispatch("notification/hide");
     },
   },
+  created() {
+    this.closeNotification();
+  },
 };
 </script>
 

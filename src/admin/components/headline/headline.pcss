@@ -3,16 +3,17 @@ $font-size: 14px;
   background-color: #43436b;
   font-size: $font-size;
   margin: 0;
-}
-.container {
-  max-width: 1200;
-  width: 92%;
-  display: flex;
-  padding: 15px 0;
-  align-items: center;
+  &__container {
+    display: flex;
+    padding: 15px 0;
+    align-items: center;
+  }
 }
 .title {
   color: rgba(#fff, 0.5);
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 }
 .btn {
   background: none;

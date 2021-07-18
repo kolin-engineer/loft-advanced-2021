@@ -2,7 +2,7 @@
 .nav.container
   router-link.nav__link(:to="{name: 'About'}") Обо мне
   router-link.nav__link(:to="{name: 'Cases'}") Мои работы
-  router-link.nav__link(:to="{name: 'Testimonials'}") Отзывы
+  router-link.nav__link(:to="{name: 'Reviews'}") Отзывы
 </template>
 
 <script>
@@ -24,6 +24,9 @@ export default {
     line-height: 22px;
     padding: 27px;
     border-bottom: 3px solid transparent;
+    @media screen and (max-width: 768px) {
+      padding: 29px 12px;
+    }
     &:hover {
       color: $admin-action-color;
       font-weight: 600;

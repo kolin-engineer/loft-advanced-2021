@@ -84,8 +84,11 @@ const actions = {
   },
   async fetch({ commit }) {
     try {
-      const res = await this.$axios.get("/categories/467");
-      commit("fetch", { all: res.data });
+      const {
+        data: { user },
+      } = await this.$axios.get("/user");
+      const { data } = await this.$axios.get(`/categories/${user.id}`);
+      commit("fetch", { all: data });
     } catch (error) {
       console.warn("Не удалось получить список всех групп\n", error);
     }

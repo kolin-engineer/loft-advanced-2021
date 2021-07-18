@@ -1,7 +1,7 @@
 <template lang="pug">
   .tag 
     .tag__title {{ title }}
-    .tag__action
+    .tag__action(v-if='!readonly')
       BaseIcon(
         symbol='cross'
         grayscale
@@ -20,6 +20,10 @@ export default {
     title: {
       type: String,
       default: "",
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
     },
   },
 };

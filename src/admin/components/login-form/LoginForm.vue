@@ -45,7 +45,6 @@ export default {
     pass: {
       ...mixinField,
     },
-    token: "",
   }),
   validations() {
     return {
@@ -92,34 +91,36 @@ export default {
       return true;
     },
 
-    onSubmit() {
-      const formData = {
+    async onSubmit() {
+      const user = {
         name: this.login.value,
         password: this.pass.value,
       };
-
       if (this.isValid()) {
         this.disableSubmit = true;
-        $axios
-          .post("/login", formData)
-          .then((res) => {
-            this.token = res.data.token;
-            this.resetForm();
+        try {
+          const {
+            data: { token },
+          } = await $axios.post("/login", user);
+          this.resetForm();
+          window.localStorage.setItem("token", token);
+          $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+          $axios.get("/user").then((res) => {
+            const {
+              data: { user },
+            } = res;
+            this.$store.commit("auth/login", user);
             this.$router.replace({ name: "About" });
-            window.localStorage.setItem("token", this.token);
-            $axios.defaults.headers["Authorization"] = `Bearer ${this.token}`;
-          })
-          .catch((error) => {
-            // this.login.error = error.response.data.error;
-            // this.pass.error = error.response.data.error;
-            this.$store.dispatch("notification/show", {
-              text: error.response.data.error,
-              type: "error",
-            });
-          })
-          .finally(() => {
-            this.disableSubmit = false;
           });
+        } catch (error) {
+          console.warn(error);
+          this.$store.dispatch("notification/show", {
+            text: error.response.data.error,
+            type: "error",
+          });
+        } finally {
+          this.disableSubmit = false;
+        }
       }
     },
   },

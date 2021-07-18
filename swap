@@ -1,7 +1,10 @@
 TODO
 [] Add 404 view and router
-[] Check wether user is Authenticated
 
+[✔] CRUD Works (UX/API)
+[✔] CRUD Reviews (UX/API)
+[✔] Check wether user is Authenticated
+[✔] Refresh token works
     
 
 COMMITED

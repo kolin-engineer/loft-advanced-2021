@@ -2,7 +2,7 @@
 .tag-input
   BaseCard
     template(slot='title')
-      BaseInput(title='Добавление тега' v-model='tags')
+      BaseInput(title='Добавление тега' v-model='tags' @input="$emit('change', tags)") 
     template(slot='content')
       .tag-input__list
         BaseTag(
@@ -24,14 +24,20 @@ export default {
     BaseCard,
     BaseTag,
   },
+  props: {
+    tagsProp: {
+      type: String,
+      default: "",
+    },
+  },
   data() {
     return {
-      tags: "",
+      tags: this.tagsProp,
     };
   },
   model: {
-    prop: "tags",
-    event,
+    prop: "tagsProp",
+    event: "change",
   },
   computed: {
     tagsArr() {

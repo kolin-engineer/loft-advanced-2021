@@ -1,30 +1,31 @@
 const state = () => ({
-  user: {
-    id: 467,
-  },
-  isAuthenticated: false,
+  user: {},
 });
-
+const getters = {
+  isLogged: (state) => {
+    const tempUser = state.user;
+    const isEmpty =
+      Object.keys(tempUser).length === 0 && tempUser.constructor === Object;
+    return isEmpty === false;
+  },
+};
 const mutations = {
-  fetchUser(state, user) {
-    state.user = user;
+  login(state, user) {
+    state.user = { ...user };
   },
 };
 
 const actions = {
-  async fetchUser({ commit }) {
-    try {
-      const res = await this.$axios.get("/user");
-      commit("fetchUser", res.data.user);
-    } catch (err) {
-      console.warn(err);
-    }
+  async logout() {
+    localStorage.removeItem("token");
+    location.reload();
   },
 };
 
 export default {
   namespaced: true,
   state,
+  getters,
   mutations,
   actions,
 };

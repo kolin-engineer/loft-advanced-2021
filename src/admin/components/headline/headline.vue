@@ -1,6 +1,6 @@
 <template lang="pug">
 .headline
-  .container 
+  .container.headline__container
     .slot-wrap
       slot(name='default')
     .title {{ title }}
@@ -16,6 +16,8 @@ export default {
   },
   methods: {
     logout() {
+      this.$store.dispatch("auth/logout");
+      this.$store.dispatch("notification/show", { text: "Вы вышли" });
       this.$router.push({ name: "Login" });
     },
   },

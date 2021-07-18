@@ -4,6 +4,9 @@ import group from "./modules/group";
 import skill from "./modules/skill";
 import auth from "./modules/auth";
 import notification from "./modules/notification";
+import work from "./modules/work";
+import review from "./modules/review";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -12,6 +15,8 @@ export default new Vuex.Store({
     skill,
     auth,
     notification,
+    work,
+    review,
   },
 
   state: {},

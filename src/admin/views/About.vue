@@ -76,7 +76,6 @@ export default {
   },
   async created() {
     await this.$store.dispatch("group/fetch");
-    await this.$store.dispatch("auth/fetchUser");
   },
 };
 </script>
