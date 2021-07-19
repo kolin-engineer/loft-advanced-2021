@@ -34,19 +34,19 @@ block content
               .aside__container 
                 .aside__content-wrap
                   .aside__header
-                    button(type="button" data-target-element='#mobile-menu').aside__close
+                    button.aside__close(type="button" data-target-element='#mobile-menu')
                       +icon('cross', 'icon icon--dark')
                   .aside__content
                     .menu.menu--vertical
-                      each link in menu
-                        a.menu__link(href="#")= link
+                      each link in [["Обо мне","about"], ["Навыки",["skills"]], ["Работы","works"], ["Отзывы","reviews"]]
+                        a.menu__link(href=`#${link[1]}` data-target-element='#mobile-menu')= link[0]
                   .aside__footer
                     .socials
                       each icon in ['insta', 'github', 'vk', 'envelope']
                         a.socials__item(href="#" target='_blank')
                           +icon(icon, 'icon-social icon-social--dark')
         // END Hero section
-        section.owner.text.text--600
+        section.owner.text.text--600(id='about')
           .container.owner__container
             .owner__left-col
               .owner__top
@@ -72,7 +72,7 @@ block content
         // END owner Section
       // END Bg-train
 
-      section.skills
+      section.skills(id='skills')
         .container.skills__container
           .skills__title-wrap
             h3.h3.skills__title Чем я могу быть полезен
@@ -82,7 +82,7 @@ block content
       // END Skills Sections
 
       // Porftolio-Section
-      section.portfolio 
+      section.portfolio(id='works')
         .container.portfolio__container
           h2.h2.portfolio__title Мои работы
           .portfolio-section__slider
@@ -90,7 +90,7 @@ block content
       // END Porftolio-Section
       
       // Testimonials Section
-      section.testimonials
+      section.testimonials(id='reviews')
         .container.testimonials__container
           #carousel-widget
       // END Testimonials Section

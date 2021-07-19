@@ -1,3 +1,3 @@
 nav.nav
-  each link in ["Обо мне", "Навыки", "Работы", "Отзывы"]
-    a.nav__link(href="#")= link
+  each link in [["Обо мне","about"], ["Навыки",["skills"]], ["Работы","works"], ["Отзывы","reviews"]]
+    a.nav__link(href=`#${link[1]}`)= link[0]

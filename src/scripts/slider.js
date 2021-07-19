@@ -1,5 +1,9 @@
 import Vue from "vue";
 
+import config from "../../env.paths.json";
+import axios from "axios";
+axios.defaults.baseURL = config.BASE_URL;
+
 const SliderNav = {
   template: "#t-slider-nav",
   emits: ["change-slide"],
@@ -78,23 +82,15 @@ const SliderPreview = {
   },
   data() {
     return {
-      gallery: [],
       currentImgId: "",
     };
   },
+  created() {
+    this.initCurrentImgId();
+  },
   methods: {
-    _initGallery() {
-      const gallery = this.portfolio.reduce((acc, current) => {
-        acc.push({
-          id: current.id,
-          filename: current.img,
-        });
-        return acc;
-      }, []);
-      this.gallery = gallery;
-    },
-    _initCurrentImgId() {
-      // Get first id sfrom Gallery
+    initCurrentImgId() {
+      // Get first id from Gallery
       try {
         if (!this.gallery.length) throw Error("Gallery must not be empty");
         this.currentImgId = this.gallery[0].id;
@@ -118,6 +114,15 @@ const SliderPreview = {
     },
   },
   computed: {
+    gallery() {
+      return this.portfolio.reduce((acc, current) => {
+        acc.push({
+          id: current.id,
+          filename: current.photo,
+        });
+        return acc;
+      }, []);
+    },
     currentImgIndex: {
       set: function(index) {
         this.currentImgId = this.gallery[index].id;
@@ -130,41 +135,35 @@ const SliderPreview = {
       return 1 + this.currentImgIndex;
     },
   },
-  created() {
-    this._initGallery();
-    this._initCurrentImgId();
-  },
 };
 
 new Vue({
   el: "#slider-widget",
   template: "#t-slider",
-  data: {
-    portfolio: [],
+  data() {
+    return {
+      portfolio: [],
+    };
   },
   components: {
     SliderPreview,
   },
-  data: {},
   methods: {
-    _initPortfolio() {
-      const dbName = "portfolio.json";
-      let portfolioJSON;
-      try {
-        portfolioJSON = require("../data/" + dbName);
-      } catch (err) {
-        console.warn(err || "Couldn't get data from " + dbName);
-      }
-      this.portfolio = this._resolveImgsPath(portfolioJSON.portfolio);
-    },
-    _resolveImgsPath(dataArr) {
-      dataArr.map((item) => {
-        item.img = require("../images/content/" + item.img).default;
+    resolvePhotoPath(works) {
+      this.portfolio = works.map((work) => {
+        return { ...work, photo: config.BASE_URL + work.photo };
       });
-      return dataArr;
+    },
+    async fetchWorks() {
+      try {
+        const { data } = await axios.get("/works/467");
+        this.resolvePhotoPath(data);
+      } catch (error) {
+        console.warn(error);
+      }
     },
   },
   created() {
-    this._initPortfolio();
+    this.fetchWorks();
   },
 });

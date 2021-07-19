@@ -1,8 +1,6 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
-import About from "../admin/views/About.vue";
 import TheHeader from "@/admin/components/TheHeader/TheHeader.vue";
-import Cases from "views/Cases.vue";
 import Reviews from "views/Reviews.vue";
 import Login from "views/Login.vue";
 import store from "../store/store.js";
@@ -15,7 +13,7 @@ export const routes = [
     name: "About",
     components: {
       header: TheHeader,
-      default: About,
+      default: () => import("views/About.vue"),
     },
   },
   {
@@ -30,7 +28,7 @@ export const routes = [
     path: "/cases",
     components: {
       header: TheHeader,
-      default: Cases,
+      default: () => import("views/Cases.vue"),
     },
     name: "Cases",
   },
@@ -38,7 +36,7 @@ export const routes = [
     path: "/reviews",
     components: {
       header: TheHeader,
-      default: Reviews,
+      default: () => import("views/Reviews.vue"),
     },
     name: "Reviews",
   },
@@ -50,8 +48,6 @@ const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
   const isToPublic = to.matched.some((route) => route.meta.public);
   const isLogged = store.getters["auth/isLogged"];
-  if (isLogged) next();
-
   if (!isToPublic && !isLogged) {
     const token = localStorage.getItem("token");
     const userApi = "https://webdev-api.loftschool.com/user";
@@ -60,14 +56,21 @@ router.beforeEach(async (to, from, next) => {
     };
     try {
       const response = await fetch(userApi, { method: "GET", headers });
+      if (response.ok !== true) {
+        store.dispatch("notification/show", {
+          text: "Время действия токена истекло",
+          type: "warning",
+        });
+        throw new Error();
+      }
       const { user } = await response.json();
       store.commit("auth/login", user);
     } catch (error) {
-      console.warn(error);
       localStorage.removeItem("token");
       router.replace({ name: "Login" });
     }
   }
   next();
 });
+
 export default router;

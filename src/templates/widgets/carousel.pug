@@ -8,13 +8,13 @@ script(type='text/x-template' id='t-carousel')
       Swiper(ref='testimonials' :options="swiperOptions" class='swiper')
         SwiperSlide(v-for="testimonial in testimonials" :key='testimonial.id' )
           figure.testimonial.testimonial--dark
-            blockquote.blockquote.testimonial__blockquote {{ testimonial.quote }}
+            blockquote.blockquote.testimonial__blockquote {{ testimonial.text }}
             .testimonial__author-box
               figure.testimonial__author-figure
-                img.testimonial__author-img(:src="testimonial.pic")
+                img.testimonial__author-img(:src="testimonial.photo")
               figcaption.testimonial__author-about
                 .testimonial__author-name {{testimonial.author}}
-                .testimonial__author-desc {{testimonial.rank}}
+                .testimonial__author-desc {{testimonial.occ}}
         
 script(type='text/x-template' id='t-carousel-controls')
   .carousel__controls

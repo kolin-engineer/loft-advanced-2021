@@ -17,6 +17,7 @@
       :key="review.id"
       @edit="onEditItem"
       @remove="onRemoveItem")
+  pre {{reviews}}
 
   //- Edit review
 

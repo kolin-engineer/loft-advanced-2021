@@ -1,16 +1,18 @@
-// Skills Widget
 import Vue from "vue";
+import config from "../../env.paths.json";
+import axios from "axios";
+axios.defaults.baseURL = config.BASE_URL;
 
 // Vue Components
 const SkillsItem = {
   template: "#skills-item",
   props: {
-    tech: String,
-    depth: Number,
+    title: String,
+    percent: Number,
   },
   computed: {
     strokeDashoffset() {
-      return 256 - (256 * parseInt(this.depth)) / 100;
+      return 256 - (256 * parseInt(this.percent)) / 100;
     },
   },
 };
@@ -21,7 +23,7 @@ const SkillsGroup = {
     SkillsItem,
   },
   props: {
-    groupName: String,
+    category: String,
     skills: Array,
   },
 };
@@ -33,10 +35,16 @@ new Vue({
     SkillsGroup,
   },
   data: {
-    skills: [],
+    categories: [],
   },
-  created() {
-    this.skills = require("../data/skills.json");
+  async created() {
+    // this.skills = require("../data/skills.json");
+    try {
+      const { data } = await axios.get("/categories/467");
+      this.categories = data;
+    } catch (error) {
+      console.warn(error);
+    }
   },
   template: "#skills-list",
 });

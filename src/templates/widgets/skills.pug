@@ -1,12 +1,12 @@
 script(id="skills-list" type="text/x-template")
   .skills-widget
-    SkillsGroup(v-for='(skills, groupName) in skills' :key='groupName' :groupName='groupName' :skills="skills")  
+    SkillsGroup(v-for='category in categories' :key='category.id' :category='category.category' :skills="category.skills")  
 
 script(id="skills-group" type="text/x-template")
   .skills-group
-    h3.skills-group__title {{ groupName }}
+    h3.skills-group__title {{ category }}
     .skills-group__list
-      SkillsItem(v-for="skill in skills" :key='skill.tech' :tech='skill.tech' :depth="skill.depth")
+      SkillsItem(v-for="skill in skills" :key='skill.id' :title='skill.title' :percent="skill.percent")
             
 
 script(id="skills-item" type="text/x-template") 
@@ -19,4 +19,4 @@ script(id="skills-item" type="text/x-template")
           //- stop(offset="0%" stop-color='#D0731B')
           stop(offset="0%" stop-color='#D0731B')
           stop(offset="100%" stop-color='#DC9322')
-      .skill__circle-text {{tech}}        
+      .skill__circle-text {{ title }}        

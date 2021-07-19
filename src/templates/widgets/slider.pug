@@ -43,9 +43,9 @@ script(type='text/x-template' id='t-slider-desc')
   transition-group.slider__desc-box(tag='div' name='fade')
     .slider__desc-wrap(v-for="work in portfolio" :key='work.id' v-if='work.id === showWorkId')
       .slider__tags
-        TagItem(v-for='tag in work.tags' :tag='tag' :key='tag')
-      h3.h3.slider__title {{ work.name }}
-      p.slider__desc {{ work.desc }}
+        TagItem(v-for='tag in work.techs.split(",")' :tag='tag' :key='tag')
+      h3.h3.slider__title {{ work.title }}
+      p.slider__desc {{ work.description }}
       .slider__link-wrap
         +icon('link','icon-link')
-        a.slider__link(:href="work.siteLink" target="_blank") Посмотреть сайт
+        a.slider__link(:href=`work.link` target="_blank") {{work.link}}

@@ -1,7 +1,10 @@
-import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
-
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import Vue from "vue";
 import "swiper/swiper-bundle.css";
+
+import config from "../../env.paths.json";
+import axios from "axios";
+axios.defaults.baseURL = config.BASE_URL;
 
 const CarouselControls = {
   template: "#t-carousel-controls",
@@ -41,15 +44,18 @@ new Vue({
           break;
       }
     },
-    _resolveImgPath(data) {
-      data.map((el) => {
-        el.pic = require(`../images/content/${el.pic}`).default;
+    resolvePhotoPathes(data) {
+      return data.map((el) => {
+        return { ...el, photo: config.BASE_URL + el.photo };
       });
-      return data;
     },
   },
-  created() {
-    const testimonials = require("../data/testimonials.json").testimonials;
-    this.testimonials = this._resolveImgPath(testimonials);
+  async created() {
+    try {
+      const { data: testimonials } = await axios.get("/reviews/467");
+      this.testimonials = this.resolvePhotoPathes(testimonials);
+    } catch (error) {
+      console.warn(error);
+    }
   },
 });
