@@ -109,9 +109,10 @@ export default {
   justify-content: space-between;
 }
 .tech {
-  flex: 0 1 220px;
+  flex: 1;
 }
 .depth {
+  margin-left: auto;
   flex: 0 0 75px;
 }
 .actions > * + * {

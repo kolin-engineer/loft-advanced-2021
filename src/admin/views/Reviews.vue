@@ -1,7 +1,7 @@
 <template lang="pug">
-.page-reviews
+.page-reviews.container
   PageTitle(title='Мои отзывы')
-  .edit-review
+  .edit-review(id="edit-review")
     EditReview(
       v-if='edit.state'
       @save='onSaveForm'
@@ -17,7 +17,6 @@
       :key="review.id"
       @edit="onEditItem"
       @remove="onRemoveItem")
-  pre {{reviews}}
 
   //- Edit review
 
@@ -104,18 +103,32 @@ export default {
   margin-bottom: 30px;
 }
 .reviews {
-  display: block;
+  display: flex;
   flex-wrap: wrap;
-  /* margin-right: -28px; */
+  margin-right: -28px;
+  @media screen and (max-width: 640px) {
+    display: block;
+    margin-right: 0;
+  }
 }
 .review {
   margin-right: 28px;
   margin-bottom: 28px;
-  @media screen and (max-width: 768px) {
-    flex-basis: 100%;
+  @media screen and (min-width: 1200px) {
+    flex: 0 0 calc(33% - 28px);
+    margin-right: 28px;
   }
-  @media screen and (max-width: 1200px) {
-    flex-basis: cacl(33% - 28px);
+  @media screen and (max-width: 1199px) {
+    flex: 0 0 calc(50% - 28px);
+    margin-right: 28px;
+  }
+  @media screen and (max-width: 640px) {
+    margin-right: 0;
+  }
+}
+.container {
+  @media screen and (max-width: 640px) {
+    width: 100%;
   }
 }
 </style>

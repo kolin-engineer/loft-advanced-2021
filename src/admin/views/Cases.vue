@@ -1,5 +1,5 @@
 <template lang="pug">
-.page-cases
+.page-cases.container
   //- Page Title Component
   PageTitle(title='Мои работы')
   EditCase.edit-case(@save='onSave' @cancel='resetEdit' :workProp="edit.work" v-if='edit.state')
@@ -92,8 +92,9 @@ export default {
   flex-wrap: wrap;
   margin-right: -20px;
   margin-bottom: -20px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 640px) {
     display: block;
+    margin-right: 0;
   }
 }
 .work-item {
@@ -103,8 +104,13 @@ export default {
   @media screen and (max-width: 1199px) {
     flex: 0 0 calc(50% - 28px);
   }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 640px) {
     margin-right: 0;
+  }
+}
+.container {
+  @media screen and (max-width: 640px) {
+    width: 100%;
   }
 }
 </style>

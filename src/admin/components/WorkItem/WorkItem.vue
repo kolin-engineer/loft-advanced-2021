@@ -58,7 +58,6 @@ export default {
 
 <style lang="postcss">
 .work {
-  max-width: 340px;
   max-height: 560px;
   &.blocked {
     position: relative;

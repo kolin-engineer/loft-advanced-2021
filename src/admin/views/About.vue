@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+.container
   PageTitle(title='Блок "Обо мне"')
     BaseButton.action(type='iconed' @click="showBlankSkillsGroup=true" v-if='!showBlankSkillsGroup' title='Добавить в группу') 
   .app__content
@@ -87,17 +87,27 @@ export default {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  justify-content: space-between;
   margin-left: -24px;
   margin-bottom: -24px;
+  @media screen and (max-width: 640px) {
+    display: block;
+  }
 }
 .skill-group {
-  flex: 0 1 calc(50% - 24px);
+  flex: 0 1 calc(33% - 24px);
   margin-left: 24px;
   margin-bottom: 24px;
   height: 100%;
+  @media screen and (max-width: 1200px) {
+    flex: 0 1 calc(50% - 24px);
+  }
 }
 .action {
   color: $admin-action-color;
+}
+.container {
+  @media screen and (max-width: 640px) {
+    width: 100%;
+  }
 }
 </style>

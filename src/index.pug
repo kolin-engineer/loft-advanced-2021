@@ -18,7 +18,7 @@ block content
                   each icon in ['insta', 'github', 'vk', 'envelope']
                     a.socials__item(href="#" target='_blank')
                       +icon(icon, 'icon-social')
-              .header__hamburger(data-target-element='#mobile-menu')
+              .header__hamburger(data-close-element='#mobile-menu')
                 button(type='button').hamburger
                   .hamburger__item
                   .hamburger__item
@@ -34,12 +34,12 @@ block content
               .aside__container 
                 .aside__content-wrap
                   .aside__header
-                    button.aside__close(type="button" data-target-element='#mobile-menu')
+                    button.aside__close(type="button" data-close-element='#mobile-menu')
                       +icon('cross', 'icon icon--dark')
                   .aside__content
                     .menu.menu--vertical
                       each link in [["Обо мне","about"], ["Навыки",["skills"]], ["Работы","works"], ["Отзывы","reviews"]]
-                        a.menu__link(href=`#${link[1]}` data-target-element='#mobile-menu')= link[0]
+                        a.menu__link(href=`#${link[1]}` data-close-element='#mobile-menu')= link[0]
                   .aside__footer
                     .socials
                       each icon in ['insta', 'github', 'vk', 'envelope']

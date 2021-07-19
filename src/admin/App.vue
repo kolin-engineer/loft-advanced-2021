@@ -3,8 +3,7 @@
   router-view(name='login')
   router-view(name='header')
   main.app__main
-    .container
-      router-view(name="default")
+    router-view(name="default")
   .notifications(:class="{active: notification.isShown}")
     BaseNotification(:text='notification.text', :type='notification.type' @click="closeNotification")
 
