@@ -2,7 +2,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://webdev-api.loftschool.com";
 
-const token = window.localStorage.getItem("token");
+const token = localStorage.getItem("token");
 if (token) {
   axios.defaults.headers["Authorization"] = `Bearer ${token}`;
 }
@@ -15,7 +15,7 @@ axios.interceptors.response.use(
       const {
         data: { token },
       } = await axios.post("/refreshToken");
-      window.localStorage.setItem("token", token);
+      localStorage.setItem("token", token);
       axios.defaults.headers["Authorization"] = `Bearer ${token}`;
       originRequestConfig.headers["Authorization"] = `Bearer ${token}`;
       return axios(originRequestConfig);

@@ -103,7 +103,7 @@ export default {
             data: { token },
           } = await $axios.post("/login", user);
           this.resetForm();
-          window.localStorage.setItem("token", token);
+          localStorage.setItem("token", token);
           $axios.defaults.headers["Authorization"] = `Bearer ${token}`;
           $axios.get("/user").then((res) => {
             const {

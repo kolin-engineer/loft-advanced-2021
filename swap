@@ -1,13 +1,12 @@
 TODO
-[] Add 404 view and router
-
+COMMITED
+[✔] Add 404 view and router
+[✔] Tests
 [✔] CRUD Works (UX/API)
 [✔] CRUD Reviews (UX/API)
 [✔] Check wether user is Authenticated
 [✔] Refresh token works
     
-
-COMMITED
 [✔] Rewrite router-view
 [✔] Notification
   [✔] Create and implent new vuex module

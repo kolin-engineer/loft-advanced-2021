@@ -40,6 +40,10 @@ export const routes = [
     },
     name: "Reviews",
   },
+  {
+    path: "*",
+    redirect: { name: "About" },
+  },
 ];
 const router = new VueRouter({
   routes,

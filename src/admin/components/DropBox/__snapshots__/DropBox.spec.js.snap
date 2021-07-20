@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot dropbox 1`] = `
+<div
+  class="component"
+>
+  <label
+    class="dropbox"
+  >
+    <div
+      class="content"
+    >
+      <div
+        class="title"
+      >
+        Перетащите или загрузите для 
+        <br />
+         загрузки изображения
+      </div>
+      <!---->
+    </div>
+  </label>
+</div>
+`;

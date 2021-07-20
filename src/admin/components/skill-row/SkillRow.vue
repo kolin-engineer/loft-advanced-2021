@@ -1,6 +1,6 @@
 <template lang="pug">
 .skill-row(@keydown.enter='approve')
-  BaseInput(:readonly='readonly' :error-message="techErr" noSidePaddings v-model.trim="tech").tech
+  BaseInput(:readonly='readonly' :error-message="techErr" :noSidePaddings='true' v-model.trim="tech").tech
   BaseInput(:readonly='readonly' :error-message="depthErr" v-model.number='depth' unit='%' type='number').depth
   .actions
     BaseIcon(symbol='pencil' grayscale v-if='readonly' @click='editMode')
@@ -25,7 +25,10 @@ export default {
   props: {
     skill: {
       type: Object,
-      require: true,
+      default: () => ({
+        title: "",
+        percent: "",
+      }),
     },
   },
   setup() {
