@@ -1,10 +1,10 @@
 //- Slider (root)
-script(type='text/x-template' id='t-slider')
+script(type='text/x-template' id='t-slider' )
   .slider
-    SliderPreview(:portfolio="portfolio")
+    SliderPreview(:portfolio="portfolio" v-if='portfolio.length')
 
 //- Slider Preview
-script(type='text/x-template' id='t-slider-preview')
+script(type='text/x-template' id='t-slider-preview' )
   .slider__inner
     .slider__preview-box
       .slider__order {{ currentImgOrder }}
