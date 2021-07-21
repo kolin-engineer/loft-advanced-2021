@@ -5,10 +5,10 @@
       BaseUser(:user="user")
     template(slot='content')
       .content
-        .text(v-text="truncate(review.text)")
+        .text(v-text="truncate(reviewProp.text)")
         .btns
-          BaseIcon(title='править' @click='$emit(`edit`, review)')
-          BaseIcon(symbol='cross' title='удалить' @click='$emit(`remove`, review.id)' )
+          BaseIcon(title='править' @click='$emit(`edit`, reviewProp)')
+          BaseIcon(symbol='cross' title='удалить' @click='$emit(`remove`, reviewProp.id)' )
 </template>
 <script>
 import BaseCard from "components/card";
@@ -21,20 +21,18 @@ export default {
     BaseIcon,
   },
   props: {
-    reviewProp: {
-      type: Object,
-      default: () => ({
-        author: "",
-        occ: "",
-        photo: "",
-        text: "",
-      }),
-      validator: (review) => {
-        const isEmpty =
-          Object.keys(review).length === 0 && review.constructor === Object;
-        return !isEmpty;
-      },
-    },
+    reviewProp: Object,
+    // default: () => ({
+    //   author: "",
+    //   occ: "",
+    //   photo: "",
+    //   text: "",
+    // }),
+    // validator: (review) => {
+    //   const isEmpty =
+    //     Object.keys(review).length === 0 && review.constructor === Object;
+    //   return !isEmpty;
+    // },
   },
   data() {
     return {
@@ -49,9 +47,9 @@ export default {
   computed: {
     user() {
       return {
-        name: this.review.author,
-        position: this.review.occ,
-        img: this.review.photo,
+        name: this.reviewProp.author,
+        position: this.reviewProp.occ,
+        img: this.reviewProp.photo,
       };
     },
   },

@@ -28,7 +28,14 @@ import EditReview from "components/EditReview";
 import BaseButton from "components/button";
 import ReviewItem from "components/ReviewItem";
 
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
+
+const mapReviews = (raw) => {
+  const baseURL = "https://webdev-api.loftschool.com/";
+  return raw.map((review) => {
+    return { ...review, photo: `${baseURL}${review.photo}` };
+  });
+};
 
 export default {
   components: {
@@ -79,18 +86,11 @@ export default {
     onRemoveItem(id) {
       this.deleteReview(id);
     },
-    mapReviews(raw) {
-      const baseURL = "https://webdev-api.loftschool.com/";
-      return raw.map((review) => {
-        return { ...review, photo: `${baseURL}${review.photo}` };
-      });
-    },
   },
   computed: {
-    reviews() {
-      const rawReviews = this.$store.state.review.reviews;
-      return this.mapReviews(rawReviews);
-    },
+    ...mapState("review", {
+      reviews: (state) => mapReviews(state.reviews),
+    }),
   },
   created() {
     this.fetchReviews();
