@@ -83,13 +83,10 @@ export default {
     },
   },
   methods: {
-    validate() {
-      this.v$.$touch();
-      console.log(this.v$);
-    },
     onSave() {
-      this.validate();
-      // this.$emit("save", work);
+      this.v$.$touch();
+      if (this.v$.$invalid) return;
+      this.$emit("save", this.work);
     },
   },
 };
