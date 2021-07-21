@@ -14,14 +14,18 @@
     .content
       .title Перетащите или загрузите для #[br] загрузки изображения
       BaseButton.button(title='Загрузить' typeAttr='file' @change='handleUpload')
+  .tooltip(v-if='errorMessage')
+    tooltip(:text="errorMessage")
 </template>
 
 <script>
 import BaseButton from "../button";
+import tooltip from "components/tooltip";
 
 export default {
   components: {
     BaseButton,
+    tooltip,
   },
   model: {
     prop: "photo",
@@ -30,6 +34,10 @@ export default {
   props: {
     photo: {
       type: String | {},
+      default: "",
+    },
+    errorMessage: {
+      type: String,
       default: "",
     },
   },
@@ -85,6 +93,9 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.component {
+  position: relative;
+}
 .dropbox {
   min-height: 280px;
   height: 100%;

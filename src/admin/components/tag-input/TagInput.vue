@@ -2,7 +2,7 @@
 .tag-input
   BaseCard
     template(slot='title')
-      BaseInput(title='Добавление тега' v-model='tags' @input="$emit('change', tags)") 
+      BaseInput(:error-message="errorMessage" title='Добавление тега' v-model='tags' @input="$emit('change', tags)") 
     template(slot='content')
       .tag-input__list
         BaseTag(
@@ -11,6 +11,7 @@
           :key="tag + index" 
           @remove='removeTag'
           )
+  
 
 </template>
 
@@ -25,6 +26,10 @@ export default {
     BaseTag,
   },
   props: {
+    "error-message": {
+      type: String,
+      default: "",
+    },
     tagsProp: {
       type: String,
       default: "",
@@ -56,4 +61,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.tag-input {
+  position: relative;
+}
+.error {
+  border: 1px solid red;
+}
+</style>
